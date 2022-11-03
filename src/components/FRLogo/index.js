@@ -1,6 +1,7 @@
 import React from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import Link from "@docusaurus/Link";
+import "./styles.module.css";
 
 const FRLogo = () => {
   const { colorMode } = useColorMode();

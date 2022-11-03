@@ -164,10 +164,46 @@ const config = {
             position: "left",
             to: "/",
           },
-          { to: "/home", label: "Home", position: "left" },
           {
+            type: "custom-NavbarLink",
+            to: "/home",
+            label: "Home",
+            position: "left",
+          },
+          {
+            type: "custom-NavbarLink",
             to: "/blog",
             label: "Blog",
+            position: "left",
+          },
+          {
+            type: "custom-NavbarLink",
+            to: "/services",
+            label: "Services",
+            position: "left",
+          },
+          {
+            type: "custom-NavbarLink",
+            to: "/technologies",
+            label: "Technologies",
+            position: "left",
+          },
+          {
+            type: "custom-NavbarLink",
+            to: "/our-work",
+            label: "Our work",
+            position: "left",
+          },
+          {
+            type: "custom-NavbarLink",
+            to: "/about",
+            label: "About",
+            position: "left",
+          },
+          {
+            type: "custom-NavbarLink",
+            to: "/careers",
+            label: "Careers",
             position: "left",
           },
           {
@@ -183,6 +219,7 @@ const config = {
             to: "https://twitter.com/FocusReactive",
           },
           {
+            type: "custom-NavbarLink",
             to: "/mail-us",
             label: "Contact Us",
             position: "right",
