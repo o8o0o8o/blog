@@ -38,6 +38,7 @@
 /* TODO fix this */
 h2[itemprop="headline"] > a {
   color: black;
+  text-transform: uppercase;
 }
 
 h1[itemprop="headline"] {
