@@ -164,10 +164,26 @@ const config = {
             position: "left",
             to: "/",
           },
-          { to: "/", label: "Home", position: "left" },
-          { to: "/blog", label: "Blog", position: "left" },
+          { to: "/home", label: "Home", position: "left" },
           {
-            to: "/",
+            to: "/blog",
+            label: "Blog",
+            position: "left",
+          },
+          {
+            type: "custom-SocialLink",
+            position: "right",
+            label: "facebook",
+            to: "https://www.facebook.com/focusreactive/",
+          },
+          {
+            type: "custom-SocialLink",
+            position: "right",
+            label: "twitter",
+            to: "https://twitter.com/FocusReactive",
+          },
+          {
+            to: "/mail-us",
             label: "Contact Us",
             position: "right",
           },
@@ -187,6 +203,10 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      // tableOfContents: {
+      //   minHeadingLevel: 2,
+      //   maxHeadingLevel: 5,
+      // },
     }),
 };
 
