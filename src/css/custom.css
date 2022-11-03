@@ -33,6 +33,7 @@
   --ifm-BlogPostItem-Header-Title-styles-module-color: red;
   --ifm-font-family-bold: "Helvetica Bold";
   --ifm-font-family-base: "Helvetica";
+  --ifm-container-width-xl: 1600px;
 }
 
 /* TODO fix this */
