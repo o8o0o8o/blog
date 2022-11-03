@@ -110,7 +110,7 @@ const config = {
   tagline: "Next.js, Headless CMS and eCommerce expert agency",
   url: "https://focusreactive.com/",
   baseUrl: "/",
-  onBrokenLinks: "throw",
+  onBrokenLinks: "ignore",
   onBrokenMarkdownLinks: "warn",
   favicon: "icons/favicon.png",
 
