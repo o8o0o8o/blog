@@ -3,7 +3,6 @@ import clsx from "clsx";
 
 import Link from "@docusaurus/Link";
 import { TagsRow } from "../TagsRow";
-import { Store } from "../../../store";
 
 const ArticleItem = ({ frontmatter, fields }) => {
   const { title, description, tags } = frontmatter;

@@ -15,11 +15,10 @@ export const Article = styled.article`
   overflow: hidden;
 `;
 
-export const MarkdownBlock = ({ children, heroImage, title }) => (
+export const MarkdownBlock = ({ children, heroImage }) => (
   <div>
     {children}
     <img src={heroImage} />
-    <h3>{title}</h3>
   </div>
 );
 
