@@ -1,20 +1,16 @@
 ---
-
 title: Think headless CMS are not customizable? We disproved this using Sanity
 description: Sanity encourage to customize almost everything. Any Sanity module can be rewritten. This makes it possible to have your own combination of standard and custom components in your application.
 heroImage: /images/hero/mika-43E513RKDug-unsplash.jpg
 heroImageCreadits: Photo by Mika on Unsplash
-date: 2020-02-20
+date: "2020-02-20T20:02:00.284"
 authorIds:
   - UsulPro
 tags:
   - Sanity
-  - 'Headless CMS'
+  - "Headless CMS"
   - Content management
   - customization
-
-
-
 ---
 
 Choosing a technological stack before creating a product we strive to ensure the **speed** of development and the possibility of **customization** to our needs. Often these two requirements are hardly compatible and controversial in their nature. Nevertheless, we strive to select a set of technologies that will allow us to quickly get the result without limiting the flexibility.
@@ -25,7 +21,7 @@ However, all ready-to-use solutions have **downsides**. We at FocusReactive have
 
 As software developers, we often want to expand this application to our needs. Such a need arises when we have to work with a complex content model and it is necessary to provide editors with the convenience of finding the necessary information and editing it. Of course, we can develop our own application, but then the advantages of using headless CMS are lost compared to just BaaS services.
 
-Different CMSs solve this problem in their own way. E.g. Contentful proposes to extend the standard UI using custom plug-ins. GraphCMS currently only allows you to customize the properties of the documents lists, but we have developed a [Storybook addon](https://github.com/focusreactive/storybook-graphql-kit-graphcms), which you can use to form your own documents outputs based on GraphQL requests. [Read more](https://focusreactive.com/storybook-graphql-kit/) about it  if you are interested.
+Different CMSs solve this problem in their own way. E.g. Contentful proposes to extend the standard UI using custom plug-ins. GraphCMS currently only allows you to customize the properties of the documents lists, but we have developed a [Storybook addon](https://github.com/focusreactive/storybook-graphql-kit-graphcms), which you can use to form your own documents outputs based on GraphQL requests. [Read more](https://focusreactive.com/storybook-graphql-kit/) about it if you are interested.
 
 ![Sanity Logo](./sanity.svg)
 
@@ -49,18 +45,15 @@ So why do we ever might want to change the default display order? I think the mo
 
 In our example, Brand objects describe conference information and are the root type. Each brand can have its own set of packages (type Package) and each package can have its own add-ons (type Package Addon). Therefore, for greater convenience, we may want to have such layout in the application:
 
-
-|     |      |     |     |
-| ---------- | ---------- | ---------- | ---------- |
-| 1 column     | 2 column     | 3 column     | 4 column     |
-| Brands       | Packages       | Package Addons       | Editor       |
-|     |      |     |     |
-
+|          |          |                |          |
+| -------- | -------- | -------------- | -------- |
+| 1 column | 2 column | 3 column       | 4 column |
+| Brands   | Packages | Package Addons | Editor   |
+|          |          |                |          |
 
 Thus, in the first column we want to display not document types, but all documents of a certain type. In the second column, we need to display only those documents of type Package that relate to the selected brand, and so on.
 
 Fortunately, Sanity Studio has an excellent API for creating your own layout, which allows you to very flexibly configure the structure of the application we need. In order to add your custom layout to Sanity Studio, you need to specify this in the configuration:
-
 
 ```json
 // sanity.json
@@ -79,7 +72,7 @@ In order to access the methods that control the creation of the layout, let's im
 ```js
 // customLayout.js
 
- 	import S from "@sanity/desk-tool/structure-builder";
+import S from "@sanity/desk-tool/structure-builder";
 ```
 
 ## Creating own document hierarchy
@@ -120,9 +113,7 @@ The document editor also has its own set of commands for publishing, duplicating
 
 We can create our own actions and add them using `menuItem()` [doc](https://www.sanity.io/docs/structure-builder-reference#menuitem-a1762da412c3). To set the operation you should pass a function or `actionHandler` into `action` [doc](https://www.sanity.io/docs/structure-builder-reference#action-25bd65584cea)
 
-
 ## Using own React Components
-
 
 If the flexibility provided by the API is not enough, you can use your own React components to display documents. To do this, you need to pass the component using the method `document().views([])` [doc](https://www.sanity.io/docs/structure-builder-reference#views-b2337234ea68)
 which accepts an array of standard and custom components. Thus, you can even specify several components for displaying a document.
@@ -131,7 +122,6 @@ https://www.sanity.io/docs/structure-builder-reference#example-a53abfb93713
 
 In addition to creating your own components for displaying the entire document, you can also create a custom component for working with a specific field of your document within the standard document editor. An excellent description of how this can be done is here:
 https://www.sanity.io/guides/how-to-make-a-custom-input-component
-
 
 ## Extending Sanity Studio with plug-ins
 
@@ -142,6 +132,7 @@ So far, we have considered only the part of Sanity Studio that is related to edi
 The plugins can use the entire area below the upper toolbars and their capabilities are unlimited. Sanity already has a fairly large set of [plugins](https://www.sanity.io/plugins?category=all) ready for use.
 
 In addition, you can develop your own plugin. This is pretty easy to do. The first steps will be as follows:
+
 - Create a folder inside the plugins/ with the name of your plugin
 - Add the plugin name to sanity.json in the plugins section
 - Go to the created folder and launch the command in terminal `sanity init plugin`
@@ -155,7 +146,6 @@ export default {
   icon: Icon,
   component: PluginApp,
 };
-
 ```
 
 The icon for switching to the plugin will appear on the upper toolbar.

@@ -141,9 +141,9 @@ const config = {
         blog: {
           path: "blog",
           // id: "defaultBlogInstance",
-          showReadingTime: true,
-          readingTime: ({ content, defaultReadingTime }) =>
-            defaultReadingTime({ content, options: { wordsPerMinute: 300 } }),
+          // showReadingTime: true,
+          // readingTime: ({ content, defaultReadingTime }) =>
+          //   defaultReadingTime({ content, options: { wordsPerMinute: 300 } }),
           blogSidebarTitle: "All posts",
           blogSidebarCount: "ALL",
           // routeBasePath: "/",

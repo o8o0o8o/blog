@@ -46,7 +46,8 @@ function BlogPostPageContent({ sidebar, children }) {
       >
         <Socials authorIds={frontMatter.authorIds} />
       </MarkdownBlock>
-      <BlogPostItem>{children}</BlogPostItem> <Signatures />
+      <BlogPostItem>{children}</BlogPostItem>
+      <Signatures />
       <ArticleList postTags={tags} short excludeIds={title} />
     </BlogLayout>
   );
