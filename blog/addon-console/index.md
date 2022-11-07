@@ -4,7 +4,7 @@ description: There're some cases when you can't / don't want / forgot to keep br
 authorIds:
   - UsulPro
 
-heroImage: /img/hero/storybook-console-hero.png
+heroImage: /images/hero/storybook-console-hero.png
 tags:
   - Storybook
   - Addon
