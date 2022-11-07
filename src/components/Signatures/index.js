@@ -47,7 +47,7 @@ const AuthorBlock = styled.div`
 const Author = ({ name, authorId, photo }) => (
   <div className="author">
     <div className="author__img-wrap">
-      <Avatar src={`/img/team/${photo}`} alt={name} />
+      <Avatar src={`/images/team/${photo}`} alt={name} />
     </div>
     <div className="author__desc">
       <p className="author__name">{name}</p>
