@@ -68,9 +68,7 @@ function getReletadPosts(allBlogPosts, metadata) {
       ) && post.metadata.title !== metadata.title
   );
 
-  const randomThreeRelatedPosts = getMultipleRandomElement(relatedPosts, 3);
-
-  const filteredPostInfos = randomThreeRelatedPosts.map((post) => {
+  const filteredPostInfos = relatedPosts.map((post) => {
     return {
       title: post.metadata.title,
       permalink: post.metadata.permalink,
@@ -78,6 +76,7 @@ function getReletadPosts(allBlogPosts, metadata) {
       authors: post.metadata.authors,
       readingTime: post.metadata.readingTime,
       date: post.metadata.date,
+      tags: post.metadata.tags.map((tag) => tag.label),
     };
   });
 

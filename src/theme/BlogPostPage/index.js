@@ -10,9 +10,12 @@ import Socials from "../../components/Socials";
 import { MarkdownBlock } from "../../components/MarkdownBlock";
 import Signatures from "../../components/Signatures";
 import ArticleList from "../../components/ArticleList";
+import { PostPaginator } from "../../components/PostPaginator";
+
 function BlogPostPageContent({ children }) {
   const { metadata } = useBlogPost();
-  const { title, description, tags, frontMatter } = metadata;
+  const { title, description, tags, frontMatter, relatedPosts, permalink } =
+    metadata;
 
   return (
     <BlogLayout>
@@ -26,7 +29,11 @@ function BlogPostPageContent({ children }) {
       </MarkdownBlock>
       <BlogPostItem>{children}</BlogPostItem>
       <Signatures />
-      <ArticleList postTags={tags} short excludeIds={title} />
+      <PostPaginator
+        title="Related Articles"
+        posts={relatedPosts}
+        excludeLinks={permalink}
+      />
     </BlogLayout>
   );
 }

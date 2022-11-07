@@ -138,28 +138,14 @@ const config = {
           editUrl:
             "https://github.com/focusreactive/FocusReactive.com/tree/master/content/blog",
         },
-        blog: {
-          path: "blog",
-          id: "defaultBlogInstance",
-          // showReadingTime: true,
-          // readingTime: ({ content, defaultReadingTime }) =>
-          //   defaultReadingTime({ content, options: { wordsPerMinute: 300 } }),
-          blogSidebarTitle: "All posts",
-          blogSidebarCount: "ALL",
-          // routeBasePath: "/",
-          editUrl:
-            "https://github.com/focusreactive/FocusReactive.com/tree/master/content/blog",
-        },
+        blog: false,
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
       }),
     ],
   ],
-  plugins: [
-    // "./plugins/blog-plugin.js",
-    // "./plugins/my-plugin.js",
-  ],
+  plugins: ["./plugins/blog-plugin.js"],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({

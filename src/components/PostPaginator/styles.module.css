@@ -1,0 +1,7 @@
+ul {
+  list-style-type: none;
+}
+
+.articlesList__item {
+  background-color: rgb(243, 243, 243);
+}
