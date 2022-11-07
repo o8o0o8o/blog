@@ -12,6 +12,6 @@ export const MarkdownBlock = ({ children, heroImage, title, description }) => (
     <p className={styles.article__shortdesc}>{description}</p>
     {children}
     <img src={heroImage} />
-    <h3 className={styles.article__title__content}>{title}</h3>
+    {/* <h3 className={styles.article__title__content}>{title}</h3> */}
   </div>
 );

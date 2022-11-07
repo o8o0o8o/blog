@@ -1,44 +1,27 @@
-const fs = require("fs");
+const blogPluginExports = require("@docusaurus/plugin-content-blog");
+const utils = require("@docusaurus/utils");
+const path = require("path");
 
-module.exports = async function (context) {
-  const { siteConfig } = context; // Siteconfig is the content of docusaurus.config.js
-  const { themeConfig } = siteConfig;
+const defaultBlogPlugin = blogPluginExports.default;
 
-  //   if (!themeConfig.goatcounter) {
-  //     throw new Error(
-  //       "You need to specify `goatcounter` object in `themeConfig` " +
-  //         "with `code` field in it to use docusaurus-plugin-goatcounter"
-  //     );
-  //   }
-  //   if (!themeConfig.goatcounter.code) {
-  //     throw new Error(
-  //       "You specified the `goatCounter` object in `themeConfig`, " +
-  //         "but the `code` field was missing. "
-  //     );
-  //   }
-
-  //   const analyticsDomain = `https://${themeConfig.goatcounter.code}.goatcounter.com`;
-
-  const dirs = await fs.promises.readdir("./blog");
-
-  console.log(dirs);
+async function blogPluginExtended(...pluginArgs) {
+  const blogPluginInstance = await defaultBlogPlugin(...pluginArgs);
+  console.log(blogPluginInstance);
+  const { blogTitle, blogDescription, postsPerPage } = pluginArgs[1];
 
   return {
-    name: "docusaurus-plugin-my-plugin",
-    injectHtmlTags: () => {
-      // Adds additional HTLM to every page
-      return {
-        headTags: [
-          {
-            tagName: "script",
-            attributes: {
-              async: true,
-              src: "//gc.zgo.at/count.js",
-              //   "data-goatcounter": `${analyticsDomain}/count`,
-            },
-          },
-        ],
-      };
-    },
+    // Add all properties of the default blog plugin so existing functionality is preserved
+    ...blogPluginInstance,
+    /**
+     * Override the default `contentLoaded` hook to access blog posts data
+     */
+    // contentLoaded: async function (data) {
+    //   const { content: blogContents, actions } = data;
+    // },
   };
+}
+
+module.exports = {
+  ...blogPluginExports,
+  default: blogPluginExtended,
 };
