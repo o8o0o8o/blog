@@ -90,6 +90,82 @@ html[data-theme="dark"] .header-twitter-link:before {
   font-size: 12px;
 }
 
+.article-info {
+  display: flex;
+  max-width: 620px;
+  margin: 44px auto 80px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.article-info__socials {
+  display: flex;
+}
+.article-info__socials a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(0);
+  transition: all ease 0.2s;
+}
+.article-info__socials a:hover {
+  transform: translateY(-3px);
+}
+.article-info__authors {
+  display: flex;
+}
+
+.author {
+  display: flex;
+  margin: 0 0 0 34px;
+  font-size: initial;
+}
+.author:first-child {
+  margin: 0;
+}
+.author__img-wrap {
+  border-radius: 50%;
+  margin: 0 20px 0 0;
+}
+.author__img-wrap img {
+  display: block;
+}
+.author__desc {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+p.author__name,
+p.author__company {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+p.author__name {
+  font-weight: bold;
+  color: #222;
+}
+
+.author p.author__name p {
+  margin: 0;
+  line-height: 1.5;
+}
+.author .article-slider-wrap {
+  margin: 43px -500px;
+}
+.author .article-slider {
+  width: 100vw;
+  display: block;
+  margin: 0 auto;
+}
+.author .article-slider img {
+  width: 100%;
+}
+
 /* TODO fix this */
 h2[itemprop="headline"] > a {
   color: black;
