@@ -140,7 +140,7 @@ const config = {
         },
         blog: {
           path: "blog",
-          id: "defaultBlogInstance",
+          // id: "defaultBlogInstance",
           showReadingTime: true,
           readingTime: ({ content, defaultReadingTime }) =>
             defaultReadingTime({ content, options: { wordsPerMinute: 300 } }),
