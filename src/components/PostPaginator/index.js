@@ -29,15 +29,10 @@ export const PostPaginator = ({ posts, title, excludeLinks }) => {
   );
 
   return (
-    <div>
-      <h2 className="font-montserrat mb-4 text-[24px] font-extrabold uppercase">
-        {title}
-      </h2>
-      <>
-        {articlesList.map((node) => {
-          return <ArticleItem key={node.permalink} {...node} />;
-        })}
-      </>
-    </div>
+    <>
+      {articlesList.map((node) => {
+        return <ArticleItem key={node.permalink} {...node} />;
+      })}
+    </>
   );
 };
