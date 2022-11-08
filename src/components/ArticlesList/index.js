@@ -5,18 +5,16 @@ import { TagsRow } from "../TagsRow";
 
 const ArticleItem = ({ tags, title, permalink }) => {
   return (
-    <ul className={styles["articles-list__list"]}>
-      <li className={styles["articles-list__item"]}>
-        <Link className={styles["articles-list__link"]} to={permalink} inner>
-          <div className="container">
-            <h3 className={styles["articles-list__title"]}>{title}</h3>
-            <div className="articles-list__tags">
-              <TagsRow tags={tags} noLinks />
-            </div>
+    <li className={styles["articles-list__item"]}>
+      <Link className={styles["articles-list__link"]} to={permalink} inner>
+        <div className="container">
+          <h3 className={styles["articles-list__title"]}>{title}</h3>
+          <div className="articles-list__tags">
+            <TagsRow tags={tags} noLinks />
           </div>
-        </Link>
-      </li>
-    </ul>
+        </div>
+      </Link>
+    </li>
   );
 };
 
@@ -30,9 +28,11 @@ export const ArticlesList = ({ posts, title, excludeLinks }) => {
 
   return (
     <div className={styles["articles-list"]}>
-      {articlesList.map((node) => {
-        return <ArticleItem key={node.permalink} {...node} />;
-      })}
+      <ul className={styles["articles-list__list"]}>
+        {articlesList.map((node) => {
+          return <ArticleItem key={node.permalink} {...node} />;
+        })}
+      </ul>
     </div>
   );
 };
