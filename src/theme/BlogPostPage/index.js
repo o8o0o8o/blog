@@ -10,6 +10,7 @@ import Socials from "../../components/Socials";
 import { MarkdownBlock } from "../../components/MarkdownBlock";
 import Signatures from "../../components/Signatures";
 import { ArticlesList } from "../../components/ArticlesList";
+import styles from "./styles.module.css";
 
 function BlogPostPageContent({ children }) {
   const { metadata } = useBlogPost();
@@ -18,17 +19,19 @@ function BlogPostPageContent({ children }) {
 
   return (
     <BlogLayout>
-      <MarkdownBlock
-        className="container"
-        heroImage={frontMatter.image || frontMatter.heroImage}
-        title={title}
-        description={description}
-      >
-        <Socials authorIds={frontMatter.authorIds} />
-      </MarkdownBlock>
-      <BlogPostItem>{children}</BlogPostItem>
-      <Signatures />
-      <ArticlesList posts={relatedPosts} excludeLinks={permalink} />
+      <div className={styles.article}>
+        <MarkdownBlock
+          className="container"
+          heroImage={frontMatter.image || frontMatter.heroImage}
+          title={title}
+          description={description}
+        >
+          <Socials authorIds={frontMatter.authorIds} />
+        </MarkdownBlock>
+        <BlogPostItem>{children}</BlogPostItem>
+        <Signatures />
+        <ArticlesList posts={relatedPosts} excludeLinks={permalink} />
+      </div>
     </BlogLayout>
   );
 }
