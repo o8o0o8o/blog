@@ -11,9 +11,5 @@ const components = {
 };
 
 export default function MDXContent({ children }) {
-  return (
-    <>
-      <MDXProvider components={components}>{children}</MDXProvider>
-    </>
-  );
+  return <MDXProvider components={components}>{children}</MDXProvider>;
 }

@@ -9,7 +9,7 @@ import BlogPostItem from "@theme/BlogPostItem";
 import Socials from "../../components/Socials";
 import { MarkdownBlock } from "../../components/MarkdownBlock";
 import Signatures from "../../components/Signatures";
-import { PostPaginator } from "../../components/PostPaginator";
+import { ArticlesList } from "../../components/ArticlesList";
 
 function BlogPostPageContent({ children }) {
   const { metadata } = useBlogPost();
@@ -28,7 +28,7 @@ function BlogPostPageContent({ children }) {
       </MarkdownBlock>
       <BlogPostItem>{children}</BlogPostItem>
       <Signatures />
-      <PostPaginator posts={relatedPosts} excludeLinks={permalink} />
+      <ArticlesList posts={relatedPosts} excludeLinks={permalink} />
     </BlogLayout>
   );
 }

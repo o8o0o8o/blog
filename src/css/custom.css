@@ -36,6 +36,18 @@
   --ifm-container-width-xl: 95%;
 }
 
+.col--9 {
+  --ifm-col-width: 100%;
+  margin-left: 0;
+  text-align: center;
+  /* max-width: 620px; */
+  margin: 0 auto;
+}
+
+.col--9 p,
+.col--9 li {
+}
+
 .header-logo::before {
   content: "";
   width: 140px;

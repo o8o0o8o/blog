@@ -1,0 +1,33 @@
+.articles-list {
+  width: 100%;
+}
+
+.articles-list__list {
+  list-style-type: none;
+  margin-block-end: 0;
+}
+
+.articles-list__item {
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 34px 0 23px;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.articles-list__title {
+  font-size: 34px;
+}
+
+.articles-list__link {
+  color: black;
+}
+
+.articles-list__item:hover > .articles-list__link,
+.articles-list__item:hover span {
+  color: white;
+}
+
+.articles-list__item:hover {
+  background-color: var(--ifm-color-primary);
+}

@@ -5,11 +5,11 @@ import { TagsRow } from "../TagsRow";
 
 const ArticleItem = ({ tags, title, permalink }) => {
   return (
-    <ul>
-      <li className={styles.articlesList__item}>
-        <Link className="articles-list__link" to={permalink} inner>
+    <ul className={styles["articles-list__list"]}>
+      <li className={styles["articles-list__item"]}>
+        <Link className={styles["articles-list__link"]} to={permalink} inner>
           <div className="container">
-            <h3 className="articles-list__title">{title}</h3>
+            <h3 className={styles["articles-list__title"]}>{title}</h3>
             <div className="articles-list__tags">
               <TagsRow tags={tags} noLinks />
             </div>
@@ -20,7 +20,7 @@ const ArticleItem = ({ tags, title, permalink }) => {
   );
 };
 
-export const PostPaginator = ({ posts, title, excludeLinks }) => {
+export const ArticlesList = ({ posts, title, excludeLinks }) => {
   if (posts.length < 1) {
     return null;
   }
@@ -29,10 +29,10 @@ export const PostPaginator = ({ posts, title, excludeLinks }) => {
   );
 
   return (
-    <>
+    <div className={styles["articles-list"]}>
       {articlesList.map((node) => {
         return <ArticleItem key={node.permalink} {...node} />;
       })}
-    </>
+    </div>
   );
 };
