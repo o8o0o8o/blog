@@ -44,8 +44,8 @@
   margin: 0 auto;
 }
 
-.col--9 p,
-.col--9 li {
+.footer__copyright {
+  color: white;
 }
 
 .header-logo::before {

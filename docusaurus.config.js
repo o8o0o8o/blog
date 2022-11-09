@@ -219,7 +219,7 @@ const config = {
         ],
       },
       footer: {
-        copyright: mockResponse.footer.copyInfo,
+        copyright: `${mockResponse.footer.copyInfo} ${mockResponse.footer.contactInfo}`,
         links: mockResponse.footer.navigation.map((group) => ({
           title: group.title,
           items: group.links.map((link) => ({
