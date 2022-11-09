@@ -133,11 +133,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         debug: true,
-        docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          editUrl:
-            "https://github.com/focusreactive/FocusReactive.com/tree/master/content/blog",
-        },
+        docs: false,
         blog: false,
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
