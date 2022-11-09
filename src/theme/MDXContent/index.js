@@ -1,8 +1,9 @@
 import React from "react";
 import { MDXProvider } from "@mdx-js/react";
 import MDXComponents from "@theme/MDXComponents";
-import { Image } from "../../components/Image";
+
 import Gist from "../../components/Gist";
+import { Image } from "../../components/renders/blog-post.components";
 
 const components = {
   ...MDXComponents,

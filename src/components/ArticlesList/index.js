@@ -3,12 +3,13 @@ import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
 import { TagsRow } from "../TagsRow";
 
-const ArticleItem = ({ tags, title, permalink }) => {
+const ArticleItem = ({ tags, title, permalink, description }) => {
   return (
     <li className={styles["articles-list__item"]}>
       <Link className={styles["articles-list__link"]} to={permalink} inner>
         <div className="container">
           <h3 className={styles["articles-list__title"]}>{title}</h3>
+          {description && <p className="articles-list__desc">{description}</p>}
           <div className="articles-list__tags">
             <TagsRow tags={tags} noLinks />
           </div>
@@ -18,7 +19,7 @@ const ArticleItem = ({ tags, title, permalink }) => {
   );
 };
 
-export const ArticlesList = ({ posts, title, excludeLinks }) => {
+export const ArticlesList = ({ posts, title, excludeLinks = "" }) => {
   if (posts.length < 1) {
     return null;
   }

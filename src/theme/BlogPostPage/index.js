@@ -26,7 +26,7 @@ function BlogPostPageContent({ children }) {
     <BlogLayout>
       <Article className={styles.article}>
         <MarkdownBlock className="container" heroImage={heroImage}>
-          <h1 className="article__title">{title}</h1>
+          <h1 className={styles.article__title}>{title}</h1>
           <p className="article__short-desc">{description}</p>
         </MarkdownBlock>
         <Socials authorIds={frontMatter.authorIds} />

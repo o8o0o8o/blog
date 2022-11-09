@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const tags = {
   h1: styled.h3``,
@@ -60,7 +60,7 @@ export const MarkdownBlock = styled.div`
     border: none;
     text-align: center;
     ::before {
-      content: '...';
+      content: "...";
       letter-spacing: 0.6em;
       font-size: 28px;
     }
@@ -109,12 +109,6 @@ export const MarkdownBlock = styled.div`
   }
   img.hidden-hero {
     display: none;
-  }
-  .centered {
-    max-width: 620px;
-    margin: 26px auto 0;
-    display: flex;
-    justify-content: center;
   }
   code {
     padding: 0.2em 0.4em;

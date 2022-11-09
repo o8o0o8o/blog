@@ -1,46 +1,48 @@
-import React from 'react';
-import cn from 'classnames';
+import React from "react";
+import clsx from "clsx";
+import styles from "./styles.module.css";
+
 const imagePropsReg = /\$\{.*\}/;
 
-const getImageAttr = str => {
+const getImageAttr = (str) => {
   const matchStr = str.match(imagePropsReg);
   if (!matchStr || !matchStr[0]) {
     return [];
   }
   return matchStr[0]
-    .replace('${', '')
-    .replace('}', '')
-    .split(',')
-    .map(s => s.trim());
+    .replace("${", "")
+    .replace("}", "")
+    .split(",")
+    .map((s) => s.trim());
 };
 
-const getImageAlt = str => str.replace(imagePropsReg, '');
+const getImageAlt = (str) => str.replace(imagePropsReg, "");
 
 const imageAttr = {
-  'full-width': {
-    className: 'full-width',
+  "full-width": {
+    className: "full-width",
   },
   inline: {
-    className: 'inline',
+    className: "inline",
   },
-  'left-side': {
-    className: 'left-side',
+  "left-side": {
+    className: "left-side",
   },
   small: {
-    className: 'small',
+    className: "small",
   },
   centered: {
-    wrapper: element => <div className="centered">{element}</div>,
+    wrapper: (element) => <div className={styles.centered}>{element}</div>,
   },
-  'hidden-hero': {
-    className: 'hidden-hero',
+  "hidden-hero": {
+    className: "hidden-hero",
   },
 };
 
-const applyAttr = attrList => {
+const applyAttr = (attrList) => {
   const classList = [];
-  const wrappers = [e => e];
-  attrList.forEach(a => {
+  const wrappers = [(e) => e];
+  attrList.forEach((a) => {
     const modifier = imageAttr[a];
     if (!modifier) return;
 
@@ -59,14 +61,14 @@ const applyAttr = attrList => {
 
 const constructElement = ({ src, altText, classList, wrappers }) => {
   const element = (
-    <img className={cn('image', classList)} src={src} alt={altText} />
+    <img className={clsx("image", classList)} src={src} alt={altText} />
   );
   const wrappedElement = wrappers.reduce((result, wr) => wr(result), element);
   return wrappedElement;
 };
 
 export const Image = ({ src, alt }) => {
-  const rowAlt = alt || '';
+  const rowAlt = alt || "";
   const attr = getImageAttr(rowAlt);
   const altText = getImageAlt(rowAlt);
   const modifiers = applyAttr(attr);
@@ -74,6 +76,4 @@ export const Image = ({ src, alt }) => {
   return element;
 };
 
-export const Divider = () => {
-
-}
+export const Divider = () => {};
