@@ -1,3 +1,11 @@
+.article {
+  /* padding: 0 50px; */
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1024px;
+  padding-top: 144px;
+}
+
 .article p {
   font-size: 14px;
   line-height: 1.72;
@@ -64,4 +72,35 @@
 
 .article .theme-code-block {
   background-color: blue;
+}
+
+.article h1 {
+  font-family: Helvetica Bold, Arial, sans-serif;
+  line-height: 1;
+  font-size: 70px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  margin: 0 0 22px;
+}
+
+.article h2 {
+  text-align: center;
+  font-size: 22px;
+  line-height: 1.2;
+  max-width: 780px;
+  margin: 32px auto;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.article__tags {
+  font-family: Helvetica Bold, Arial, sans-serif;
+  font-size: 14px;
+  margin: 20px auto 40px;
+  text-transform: uppercase;
+  color: #13cf2e;
+  text-align: right;
+  line-height: 1.72;
+  max-width: 620px;
 }

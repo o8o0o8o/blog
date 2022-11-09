@@ -1,29 +1,25 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 
-export const Tag = (isLink) => (isLink ? styled.a : styled.span)`
+export const Tag = isLink => (isLink ? styled.a : styled.span)`
   margin-right: 9px;
   text-decoration: none;
-  color: var(--ifm-color-primary);
+  color: #13cf2e;
   :last-of-type {
     margin-right: 0;
   }
-  ${
-    isLink
-      ? `
+  ${isLink ? `
   :hover {
     text-decoration: underline;
   }
-  `
-      : ""
-  }
+  ` : ''}
+
 `;
 
 export const TagsRow = ({ tags, onClick, noLinks }) => {
-  return tags.map((tag) => {
+  return tags.map(tag => {
     const hashtag = `#${tag}`;
-    const Wrapper = Tag(!noLinks);
-
+    const Wrapper = Tag(!noLinks)
     return (
       <Wrapper href={hashtag} key={hashtag} onClick={() => onClick(tag)}>
         {hashtag}

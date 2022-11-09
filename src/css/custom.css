@@ -150,14 +150,14 @@ html[data-theme="dark"] .header-twitter-link:before {
   flex-direction: column;
 }
 
-p.author__name,
-p.author__company {
+.author p.author__name,
+.author p.author__company {
   font-size: 12px;
   color: #666;
   margin: 0;
 }
 
-p.author__name {
+.author p.author__name {
   font-weight: bold;
   color: #222;
 }

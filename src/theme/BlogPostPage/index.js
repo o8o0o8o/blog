@@ -7,31 +7,41 @@ import BlogLayout from "@theme/BlogLayout";
 import BlogPostItem from "@theme/BlogPostItem";
 
 import Socials from "../../components/Socials";
-import { MarkdownBlock } from "../../components/MarkdownBlock";
+import {
+  Article,
+  MarkdownBlock,
+} from "../../components/renders/blog-post.styles";
 import Signatures from "../../components/Signatures";
 import { ArticlesList } from "../../components/ArticlesList";
 import styles from "./styles.module.css";
+import { TagsRow } from "../../components/TagsRow";
 
 function BlogPostPageContent({ children }) {
   const { metadata } = useBlogPost();
   const { title, description, tags, frontMatter, relatedPosts, permalink } =
     metadata;
+  const heroImage = frontMatter.image || frontMatter.heroImage;
 
   return (
     <BlogLayout>
-      <div className={styles.article}>
-        <MarkdownBlock
-          className="container"
-          heroImage={frontMatter.image || frontMatter.heroImage}
-          title={title}
-          description={description}
-        >
-          <Socials authorIds={frontMatter.authorIds} />
+      <Article className={styles.article}>
+        <MarkdownBlock className="container" heroImage={heroImage}>
+          <h1 className="article__title">{title}</h1>
+          <p className="article__short-desc">{description}</p>
+        </MarkdownBlock>
+        <Socials authorIds={frontMatter.authorIds} />
+        <MarkdownBlock className="container" heroImage={heroImage}>
+          {heroImage ? (
+            <img className="hero-image" src={heroImage} alt={title} />
+          ) : null}
         </MarkdownBlock>
         <BlogPostItem>{children}</BlogPostItem>
-        <Signatures />
-        <ArticlesList posts={relatedPosts} excludeLinks={permalink} />
-      </div>
+        <div className={styles.article__tags}>
+          <TagsRow tags={tags.map((tag) => tag.label)} noLinks />
+        </div>
+      </Article>
+      <Signatures />
+      <ArticlesList posts={relatedPosts} excludeLinks={permalink} />
     </BlogLayout>
   );
 }
