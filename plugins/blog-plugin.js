@@ -107,6 +107,8 @@ function getAuthorPosts(allBlogPosts, metadata) {
 }
 
 async function blogPluginExtended(...pluginArgs) {
+  pluginArgs[1].routeBasePath = "/"; // Serve the blogPosts at the site's root
+
   const blogPluginInstance = await defaultBlogPlugin(...pluginArgs);
 
   const { blogTitle, blogDescription, postsPerPage } = pluginArgs[1];
