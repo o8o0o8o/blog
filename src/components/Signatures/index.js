@@ -60,21 +60,17 @@ const data = {
   authors: { edges: [] },
 };
 
-const Signatures = ({ authorIds }) => {
-  // const allAuthors = data.authors.edges.map(({ node }) => ({ ...node }));
-  // const postAuthors = getAuthors(allAuthors, authorIds);
-
+const Signatures = ({ authorIds, authorsMap }) => {
+  const postAuthors = getAuthors(authorsMap, authorIds);
+  console.log(authorIds, authorsMap, postAuthors);
   return (
     <Container>
       <h4>WRITTEN BY</h4>
-      {/* {postAuthors.map((author) => (
+      {postAuthors.map((author) => (
         <AuthorBlock key={author.authorId}>
           <Author {...author} />
         </AuthorBlock>
-      ))} */}
-      <AuthorBlock>
-        <Author authorId="UsulPro" name="Oleg Proskurin" photo="oleg.jpg" />
-      </AuthorBlock>
+      ))}
     </Container>
   );
 };

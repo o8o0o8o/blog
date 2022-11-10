@@ -18,9 +18,17 @@ import { TagsRow } from "../../components/TagsRow";
 
 function BlogPostPageContent({ children }) {
   const { metadata } = useBlogPost();
-  const { title, description, tags, frontMatter, relatedPosts, permalink } =
-    metadata;
+  const {
+    title,
+    description,
+    tags,
+    frontMatter,
+    relatedPosts,
+    permalink,
+    authorsMap,
+  } = metadata;
   const heroImage = frontMatter.image || frontMatter.heroImage;
+  const authorIds = frontMatter.authorIds;
 
   return (
     <BlogLayout>
@@ -29,7 +37,7 @@ function BlogPostPageContent({ children }) {
           <h1 className={styles.article__title}>{title}</h1>
           <p className="article__short-desc">{description}</p>
         </MarkdownBlock>
-        <Socials authorIds={frontMatter.authorIds} />
+        <Socials authorIds={authorIds} authorsMap={authorsMap} />
         <MarkdownBlock className="container" heroImage={heroImage}>
           {heroImage ? (
             <img className="hero-image" src={heroImage} alt={title} />
@@ -40,7 +48,7 @@ function BlogPostPageContent({ children }) {
           <TagsRow tags={tags.map((tag) => tag.label)} noLinks />
         </div>
       </Article>
-      <Signatures />
+      <Signatures authorsMap={authorsMap} authorIds={authorIds} />
       <ArticlesList posts={relatedPosts} excludeLinks={permalink} />
     </BlogLayout>
   );

@@ -1,7 +1,8 @@
 const blogPluginExports = require("@docusaurus/plugin-content-blog");
 const utils = require("@docusaurus/utils");
 const path = require("path");
-
+const { parseAllDocuments, stringify } = require("yaml");
+const fs = require("fs");
 const defaultBlogPlugin = blogPluginExports.default;
 
 const pluginDataDirRoot = path.join(
@@ -110,8 +111,29 @@ async function blogPluginExtended(...pluginArgs) {
   pluginArgs[1].routeBasePath = "/"; // Serve the blogPosts at the site's root
 
   const blogPluginInstance = await defaultBlogPlugin(...pluginArgs);
-
   const { blogTitle, blogDescription, postsPerPage } = pluginArgs[1];
+  let authorsMap = [];
+
+  try {
+    const file = await fs.promises.readFile("blog/developers.yaml", "utf8");
+    const documents = await parseAllDocuments(file);
+
+    documents.forEach((dev) => {
+      const obj = {};
+
+      dev.contents.items.forEach((item) => {
+        if (item.key.value === "links") {
+          obj.url = item.value.items[0].items[0].value.value; // get first link
+        } else {
+          obj[item.key.value] = item.value.value;
+        }
+      });
+
+      authorsMap.push(obj);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
     // Add all properties of the default blog plugin so existing functionality is preserved
@@ -175,7 +197,11 @@ async function blogPluginExtended(...pluginArgs) {
             // Note that this created data path must be in sync with
             // metadataPath provided to mdx-loader.
             `${utils.docuHash(metadata.source)}.json`,
-            JSON.stringify({ ...metadata, relatedPosts, authorPosts }, null, 2)
+            JSON.stringify(
+              { ...metadata, relatedPosts, authorPosts, authorsMap },
+              null,
+              2
+            )
           );
 
           addRoute({

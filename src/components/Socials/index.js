@@ -28,13 +28,8 @@ const Author = ({ name, authorId, photo }) => (
   </div>
 );
 
-const data = {
-  users: { edges: [] },
-};
-
-const Socials = ({ authorIds }) => {
-  const allAuthors = data.users.edges.map(({ node }) => ({ ...node }));
-  const postAuthors = getAuthors(allAuthors, authorIds);
+const Socials = ({ authorIds, authorsMap }) => {
+  const postAuthors = getAuthors(authorsMap, authorIds);
 
   return (
     <div className="article-info">
@@ -47,10 +42,9 @@ const Socials = ({ authorIds }) => {
         </a>
       </div>
       <div className="article-info__authors">
-        {/* {postAuthors.map((author) => (
+        {postAuthors.map((author) => (
           <Author {...author} key={author.authorId} />
-        ))} */}
-        <Author authorId="UsulPro" name="Oleg Proskurin" photo="oleg.jpg" />
+        ))}
       </div>
     </div>
   );
@@ -58,6 +52,7 @@ const Socials = ({ authorIds }) => {
 
 Socials.defaultProps = {
   authorIds: [],
+  authorsMap: [],
 };
 
 export default Socials;
