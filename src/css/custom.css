@@ -166,6 +166,11 @@ html[data-theme="dark"] .header-twitter-link:before {
   margin: 0;
   line-height: 1.5;
 }
+
+.author p.author__name:hover {
+  color: var(--ifm-color-primary);
+}
+
 .author .article-slider-wrap {
   margin: 43px -500px;
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import Link from "@docusaurus/Link";
 
 const getAuthors = (allAuthors, authorIds) => {
   const selected = authorIds
@@ -50,7 +51,9 @@ const Author = ({ name, authorId, photo }) => (
       <Avatar src={`/images/team/${photo}`} alt={name} />
     </div>
     <div className="author__desc">
-      <p className="author__name">{name}</p>
+      <Link to={`/blog/author/${authorId}`}>
+        <p className="author__name">{name}</p>
+      </Link>
       <p className="author__company">{`@${authorId}`}</p>
     </div>
   </div>
