@@ -62,7 +62,7 @@ const data = {
 
 const Signatures = ({ authorIds, authorsMap }) => {
   const postAuthors = getAuthors(authorsMap, authorIds);
-  console.log(authorIds, authorsMap, postAuthors);
+
   return (
     <Container>
       <h4>WRITTEN BY</h4>

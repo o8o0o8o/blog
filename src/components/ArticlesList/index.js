@@ -19,7 +19,7 @@ const ArticleItem = ({ tags, title, permalink, description }) => {
   );
 };
 
-export const ArticlesList = ({ posts, title, excludeLinks = "" }) => {
+export const ArticlesList = ({ posts, excludeLinks = "" }) => {
   if (posts.length < 1) {
     return null;
   }

@@ -245,13 +245,13 @@ async function blogPluginExtended(...pluginArgs) {
       );
 
       const authorsArray = allBlogPosts
-        .map((post) => post.metadata.frontMatter.authors)
+        .map((post) => post.metadata.frontMatter.authorIds[0])
         .filter((authorName) => authorName !== undefined);
       const uniqueAuthors = [...new Set(authorsArray)];
 
       uniqueAuthors.map(async (author) => {
         const authorPosts = allBlogPosts.filter(
-          (post) => post.metadata.frontMatter.authors === author
+          (post) => post.metadata.frontMatter.authorIds[0] === author
         );
 
         const authorListPaginated = paginateBlogPosts({

@@ -11,6 +11,8 @@ import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
 import { ArticlesList } from "../../components/ArticlesList";
+import TagsList from "../../components/TagsList";
+
 function BlogListPageMetadata(props) {
   const { metadata } = props;
   const {
@@ -35,8 +37,10 @@ function BlogListPageContent(props) {
     title: item.content.metadata.title,
     tags: item.content.metadata.tags.map((tag) => tag.label),
   }));
+
   return (
     <BlogLayout>
+      {/* <TagsList tags={metadata.tags.map((tag) => tag.label)} /> */}
       <ArticlesList posts={posts} />
     </BlogLayout>
   );
