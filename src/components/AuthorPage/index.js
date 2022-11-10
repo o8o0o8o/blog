@@ -12,7 +12,6 @@ const AuthorPage = (props) => {
     permalink: item.content.metadata.permalink,
     description: item.content.metadata.description,
   }));
-  const author = items[0].content.metadata.authors[0];
 
   return (
     <>

@@ -7,9 +7,7 @@ import {
   ThemeClassNames,
 } from "@docusaurus/theme-common";
 import BlogLayout from "@theme/BlogLayout";
-import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
-import BlogPostItems from "@theme/BlogPostItems";
 import { ArticlesList } from "../../components/ArticlesList";
 import TagsList from "../../components/TagsList";
 

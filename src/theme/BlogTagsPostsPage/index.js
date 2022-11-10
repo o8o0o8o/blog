@@ -9,9 +9,7 @@ import {
 } from "@docusaurus/theme-common";
 import Link from "@docusaurus/Link";
 import BlogLayout from "@theme/BlogLayout";
-import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
-import BlogPostItems from "@theme/BlogPostItems";
 import { ArticlesList } from "../../components/ArticlesList";
 // Very simple pluralization: probably good enough for now
 function useBlogPostsPlural() {
