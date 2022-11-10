@@ -29,18 +29,18 @@ function BlogListPageMetadata(props) {
   );
 }
 function BlogListPageContent(props) {
-  const { metadata, items } = props;
+  const { items, tags } = props;
 
   const posts = items.map((item) => ({
     permalink: item.content.metadata.permalink,
     description: item.content.metadata.description,
     title: item.content.metadata.title,
-    tags: item.content.metadata.tags.map((tag) => tag.label),
+    tags: item.content.metadata.tags,
   }));
 
   return (
     <BlogLayout>
-      {/* <TagsList tags={metadata.tags.map((tag) => tag.label)} /> */}
+      <TagsList tags={tags} />
       <ArticlesList posts={posts} />
     </BlogLayout>
   );

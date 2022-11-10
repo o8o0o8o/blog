@@ -6,9 +6,12 @@ const TagsHolder = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 32px 0;
 `;
 
-const TagsList = () => {
+const TagsList = ({ tags }) => {
   return (
     <section
       className="tag-section h-margin is-light js-scroll-header"

@@ -34,7 +34,7 @@
   color: black;
 }
 
-.articles-list__item:hover > .articles-list__link,
+.articles-list__item:hover a,
 .articles-list__item:hover span {
   color: white;
 }

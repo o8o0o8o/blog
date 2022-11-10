@@ -77,7 +77,7 @@ function getReletadPosts(allBlogPosts, metadata) {
       authors: post.metadata.authors,
       readingTime: post.metadata.readingTime,
       date: post.metadata.date,
-      tags: post.metadata.tags.map((tag) => tag.label),
+      tags: post.metadata.tags,
     };
   });
 
@@ -217,6 +217,28 @@ async function blogPluginExtended(...pluginArgs) {
         })
       );
 
+      const tagsProp = Object.values(blogTags).map((tag) => ({
+        label: tag.label,
+        permalink: tag.permalink,
+        count: tag.items.length,
+      }));
+
+      const tagsPropPath = await createData(
+        `${utils.docuHash(`${blogTagsListPath}-tags`)}.json`,
+        JSON.stringify(tagsProp, null, 2)
+      );
+
+      async function createTagsListPage() {
+        addRoute({
+          path: blogTagsListPath,
+          component: "@theme/BlogTagsListPage",
+          exact: true,
+          modules: {
+            tags: aliasedSource(tagsPropPath),
+          },
+        });
+      }
+
       // Create routes for blog's paginated list entries.
       await Promise.all(
         blogListPaginated.map(async (listPage) => {
@@ -239,6 +261,7 @@ async function blogPluginExtended(...pluginArgs) {
                   : items
               ),
               metadata: aliasedSource(pageMetadataPath),
+              tags: tagsPropPath,
             },
           });
         })
@@ -280,28 +303,6 @@ async function blogPluginExtended(...pluginArgs) {
       // Tags. This is the last part so we early-return if there are no tags.
       if (Object.keys(blogTags).length === 0) {
         return;
-      }
-
-      async function createTagsListPage() {
-        const tagsProp = Object.values(blogTags).map((tag) => ({
-          label: tag.label,
-          permalink: tag.permalink,
-          count: tag.items.length,
-        }));
-
-        const tagsPropPath = await createData(
-          `${utils.docuHash(`${blogTagsListPath}-tags`)}.json`,
-          JSON.stringify(tagsProp, null, 2)
-        );
-
-        addRoute({
-          path: blogTagsListPath,
-          component: "@theme/BlogTagsListPage",
-          exact: true,
-          modules: {
-            tags: aliasedSource(tagsPropPath),
-          },
-        });
       }
 
       async function createTagPostsListPage(tag) {

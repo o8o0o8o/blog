@@ -45,7 +45,7 @@ function BlogPostPageContent({ children }) {
         </MarkdownBlock>
         <BlogPostItem>{children}</BlogPostItem>
         <div className={styles.article__tags}>
-          <TagsRow tags={tags.map((tag) => tag.label)} noLinks />
+          <TagsRow tags={tags} />
         </div>
       </Article>
       <Signatures authorsMap={authorsMap} authorIds={authorIds} />
