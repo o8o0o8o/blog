@@ -17,11 +17,9 @@ function paginateBlogPosts({
   basePageUrl,
   blogTitle,
   blogDescription,
-  postsPerPageOption,
 }) {
   const totalCount = blogPosts.length;
-  const postsPerPage =
-    postsPerPageOption === "ALL" ? totalCount : postsPerPageOption;
+  const postsPerPage = totalCount;
 
   const numberOfPages = Math.ceil(totalCount / postsPerPage);
 
