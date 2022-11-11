@@ -12,7 +12,6 @@
 .articles-list li.articles-list__item {
   text-transform: uppercase;
   font-weight: bold;
-  padding: 34px 0 23px;
   transition: all 0.3s ease;
   border-bottom: 1px solid #ebebeb;
   text-align: center;
@@ -31,6 +30,8 @@
 }
 
 .articles-list__link {
+  padding: 34px 0 23px;
+  display: block;
   color: black;
 }
 
