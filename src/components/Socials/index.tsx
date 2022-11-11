@@ -1,6 +1,6 @@
 import React from "react";
-
 import Author from "../Author";
+import styles from "./styles.module.css";
 
 const getAuthors = (allAuthors, authorIds) => {
   const selected = authorIds
@@ -15,8 +15,8 @@ const Socials = ({ authorIds, authorsMap }) => {
   const postAuthors = getAuthors(authorsMap, authorIds);
 
   return (
-    <div className="article-info">
-      <div className="article-info__socials">
+    <div className={styles["article-info"]}>
+      <div className={styles["article-info__socials"]}>
         <a href="https://twitter.com/FocusReactive">
           <img src="/icons/twitter.svg" alt="Twitter" />
         </a>
@@ -24,7 +24,7 @@ const Socials = ({ authorIds, authorsMap }) => {
           <img src="/icons/facebook.svg" alt="Facebook" />
         </a>
       </div>
-      <div className="article-info__authors">
+      <div className={styles["article-info__authors"]}>
         {postAuthors.map((author) => (
           <Author {...author} key={author.authorId} />
         ))}

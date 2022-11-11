@@ -1,15 +1,5 @@
 import styled from "@emotion/styled";
 
-export const tags = {
-  h1: styled.h3``,
-  h2: styled.h4``,
-  h3: styled.h5``,
-  h4: styled.h6``,
-  h5: styled.h6``,
-  h6: styled.h6``,
-  span: styled.span``,
-};
-
 export const Article = styled.article`
   overflow: hidden;
 `;
@@ -82,7 +72,6 @@ export const MarkdownBlock = styled.div<ImageProps>`
       height: 0px !important;
       padding-bottom: 0px !important;
     }
-
     .gatsby-resp-image-image {
       position: relative;
       box-shadow: #a5a5a5 2px 2px 10px 2px !important;
@@ -131,7 +120,6 @@ export const MarkdownBlock = styled.div<ImageProps>`
     max-width: 620px;
     margin: 26px auto 0;
   }
-
   a {
     color: #13cf2e;
   }

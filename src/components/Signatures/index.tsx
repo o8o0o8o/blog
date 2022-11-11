@@ -27,16 +27,6 @@ const AuthorBlock = styled.div`
   line-height: 1.72;
   max-width: 620px;
   margin: 8px auto 0;
-  .author__desc {
-    .author__name {
-      font-size: 28px;
-      font-weight: 600px;
-    }
-    .author__company {
-      font-size: 18px;
-      font-weight: 300px;
-    }
-  }
 `;
 
 const Signatures = ({ authorIds, authorsMap }) => {
@@ -47,7 +37,7 @@ const Signatures = ({ authorIds, authorsMap }) => {
       <h4>WRITTEN BY</h4>
       {postAuthors.map((author) => (
         <AuthorBlock key={author.authorId}>
-          <Author {...author} avatarSize="big" />
+          <Author {...author} avatarSize="big" isItSignature />
         </AuthorBlock>
       ))}
     </Container>
