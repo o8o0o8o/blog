@@ -47,7 +47,7 @@ const Signatures = ({ authorIds, authorsMap }) => {
       <h4>WRITTEN BY</h4>
       {postAuthors.map((author) => (
         <AuthorBlock key={author.authorId}>
-          <Author {...author} />
+          <Author {...author} avatarSize="big" />
         </AuthorBlock>
       ))}
     </Container>

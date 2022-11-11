@@ -2,16 +2,26 @@ import React from "react";
 import styled from "@emotion/styled";
 import Link from "@docusaurus/Link";
 
-const Avatar = styled.img`
-  width: 45px;
-  height: 45px;
+type AvatarProps = {
+  avatarSize: "small" | "big";
+};
+
+const Avatar = styled.img<AvatarProps>`
+  ${({ avatarSize }) =>
+    avatarSize === "big"
+      ? "width: 80px; height 80px;"
+      : "width: 45px; height 45px;"}
   border-radius: 50%;
 `;
 
-const Author = ({ name, authorId, photo }) => (
+const Author = ({ name, authorId, photo, avatarSize }) => (
   <div className="author">
     <div className="author__img-wrap">
-      <Avatar src={`/images/team/${photo}`} alt={name} />
+      <Avatar
+        src={`/images/team/${photo}`}
+        alt={name}
+        avatarSize={avatarSize}
+      />
     </div>
     <div className="author__desc">
       <Link to={`/blog/author/${authorId}`}>
