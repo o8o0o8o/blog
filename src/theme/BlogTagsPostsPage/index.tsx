@@ -11,6 +11,7 @@ import Link from "@docusaurus/Link";
 import BlogLayout from "@theme/BlogLayout";
 import SearchMetadata from "@theme/SearchMetadata";
 import { ArticlesList } from "../../components/ArticlesList";
+
 // Very simple pluralization: probably good enough for now
 function useBlogPostsPlural() {
   const { selectMessage } = usePluralForm();

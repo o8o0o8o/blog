@@ -1,9 +1,12 @@
 .article {
-  /* padding: 0 50px; */
+  padding-top: 144px;
+}
+
+.article__container {
+  max-width: 1024px;
+  padding: 0 50px;
   width: 100%;
   margin: 0 auto;
-  max-width: 1024px;
-  padding-top: 144px;
 }
 
 .article p {
@@ -33,18 +36,6 @@
   border-left: 0.25em solid rgb(223, 226, 229);
   max-width: 620px;
   margin: 26px auto 0px;
-}
-
-.article pre {
-  padding: 8px;
-  font-size: 85%;
-  background-color: rgb(247, 247, 247);
-  border-radius: 3px;
-  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-  overflow: auto;
-  width: 620px;
-  margin: 26px auto 0px;
-  text-align: left;
 }
 
 .article table {

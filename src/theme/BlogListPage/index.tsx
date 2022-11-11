@@ -38,7 +38,9 @@ function BlogListPageContent(props) {
 
   return (
     <BlogLayout>
-      <TagsList tags={tags} />
+      <div className="container">
+        <TagsList tags={tags} />
+      </div>
       <ArticlesList posts={posts} />
     </BlogLayout>
   );

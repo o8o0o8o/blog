@@ -6,7 +6,7 @@ import { TagsRow } from "../TagsRow";
 const ArticleItem = ({ tags, title, permalink, description }) => {
   return (
     <li className={styles["articles-list__item"]}>
-      <Link className={styles["articles-list__link"]} to={permalink} inner>
+      <Link className={styles["articles-list__link"]} to={permalink}>
         <div className="container">
           <h3 className={styles["articles-list__title"]}>{title}</h3>
           {description && <p className="articles-list__desc">{description}</p>}

@@ -21,18 +21,16 @@ export const Tag = (isLink) => (isLink ? styled.a : styled.span)`
 
 `;
 
-export const TagsRow = ({ tags, onClick, noLinks }) => {
+export const TagsRow = ({ tags, noLinks }) => {
   return tags.map((tag) => {
     const hashtag = `#${tag.label}`;
     const Wrapper = Tag(!noLinks);
     return (
       <>
         {noLinks ? (
-          <Wrapper href={hashtag} key={hashtag} onClick={() => onClick(tag)}>
-            {hashtag}
-          </Wrapper>
+          <Wrapper key={hashtag}>{hashtag}</Wrapper>
         ) : (
-          <Wrapper href={hashtag} key={hashtag} onClick={() => onClick(tag)}>
+          <Wrapper key={hashtag}>
             <Link to={tag.permalink}>{hashtag}</Link>
           </Wrapper>
         )}

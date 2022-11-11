@@ -14,7 +14,11 @@ export const Article = styled.article`
   overflow: hidden;
 `;
 
-export const MarkdownBlock = styled.div`
+type ImageProps = {
+  heroImage: string;
+};
+
+export const MarkdownBlock = styled.div<ImageProps>`
   margin-bottom: 80px;
   /* overflow: auto; */
 

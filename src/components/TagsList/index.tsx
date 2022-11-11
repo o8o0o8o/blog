@@ -19,7 +19,7 @@ const TagsList = ({ tags }) => {
       data-section="tag-section"
     >
       <TagsHolder className="container">
-        <TagsRow tags={tags} />
+        <TagsRow tags={tags} noLinks={false} />
       </TagsHolder>
     </section>
   );
