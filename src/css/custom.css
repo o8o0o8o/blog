@@ -34,7 +34,7 @@
   --ifm-font-family-bold: "Helvetica Bold";
   --ifm-font-family-base: "Helvetica";
   --ifm-container-width-xl: 95%;
-  --docusaurus-highlighted-code-line-bg: #2a553b;
+  /* --docusaurus-highlighted-code-line-bg: #2a553b; */
 }
 
 .col--9 {
