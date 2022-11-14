@@ -213,15 +213,18 @@ _Script 8. Adding a button handler_
 const User = ({ value, type }) => {
   const { profileImage, name, email } = value;
   const { title } = type;
-
+  // highlight-start
   const handleClick = () => {
     // todo: switch user to the current one
   };
+
+  // highlight-end
   return (
     <div>
       <div className="title">{title}</div>
       <img src={profileImage} />
       <div>{`${name} / ${email}`}</div>
+      // highlight-next-line
       <button onClick={handleClick}>Join</button>
     </div>
   );
