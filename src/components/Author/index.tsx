@@ -5,7 +5,7 @@ import clsx from "clsx";
 import styles from "./styles.module.css";
 
 type AvatarProps = {
-  avatarSize: "small" | "big";
+  avatarSize?: "small" | "big";
 };
 
 const Avatar = styled.img<AvatarProps>`
@@ -16,7 +16,20 @@ const Avatar = styled.img<AvatarProps>`
   border-radius: 50%;
 `;
 
-const Author = ({ name, authorId, photo, avatarSize, isItSignature }) => (
+type AuthorProps = AvatarProps & {
+  name: string;
+  authorId: string;
+  photo: string;
+  isItSignature?: boolean;
+};
+
+const Author = ({
+  name,
+  authorId,
+  photo,
+  avatarSize,
+  isItSignature,
+}: AuthorProps) => (
   <div className={styles.author}>
     <div className={styles["author__img-wrap"]}>
       <Avatar

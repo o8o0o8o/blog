@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { TagsRow } from "../TagsRow";
+import { BlogApiTag } from "@site/src/types";
 
 const TagsHolder = styled.div`
   display: flex;
@@ -11,7 +12,11 @@ const TagsHolder = styled.div`
   padding: 32px 0;
 `;
 
-const TagsList = ({ tags }) => {
+type TagsListProps = {
+  tags: BlogApiTag[];
+};
+
+const TagsList = ({ tags }: TagsListProps) => {
   return (
     <section
       className="tag-section h-margin is-light js-scroll-header"

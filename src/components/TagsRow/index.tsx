@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Link from "@docusaurus/Link";
+import type { BlogApiTag } from "@site/src/types";
 
 type TagProp = {
   isLink: boolean;
@@ -23,21 +24,30 @@ export const Tag = styled.span<TagProp>`
       : ""}
 `;
 
-export const TagsRow = ({ tags, noLinks }) => {
-  return tags.map((tag) => {
-    const hashtag = `#${tag.label}`;
+interface TagsRowProps {
+  tags: BlogApiTag[];
+  noLinks: boolean;
+}
 
-    if (noLinks)
-      return (
-        <Tag key={hashtag} isLink={false}>
-          {hashtag}
-        </Tag>
-      );
+export const TagsRow = ({ tags, noLinks }: TagsRowProps) => {
+  return (
+    <>
+      {tags.map((tag) => {
+        const hashtag = `#${tag.label}`;
 
-    return (
-      <Tag key={hashtag} isLink={true}>
-        <Link to={tag.permalink}>{hashtag}</Link>
-      </Tag>
-    );
-  });
+        if (noLinks)
+          return (
+            <Tag key={hashtag} isLink={false}>
+              {hashtag}
+            </Tag>
+          );
+
+        return (
+          <Tag key={hashtag} isLink={true}>
+            <Link to={tag.permalink}>{hashtag}</Link>
+          </Tag>
+        );
+      })}
+    </>
+  );
 };

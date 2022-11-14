@@ -2,8 +2,21 @@ import React from "react";
 import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
 import { TagsRow } from "../TagsRow";
+import type { BlogApiRelatedPosts, BlogApiTag } from "@site/src/types";
 
-const ArticleItem = ({ tags, title, permalink, description }) => {
+interface ArticleItemProps {
+  tags: BlogApiTag[];
+  title: string;
+  permalink: string;
+  description?: string;
+}
+
+const ArticleItem = ({
+  tags,
+  title,
+  permalink,
+  description,
+}: ArticleItemProps) => {
   return (
     <li className={styles["articles-list__item"]}>
       <Link className={styles["articles-list__link"]} to={permalink}>
@@ -19,7 +32,15 @@ const ArticleItem = ({ tags, title, permalink, description }) => {
   );
 };
 
-export const ArticlesList = ({ posts, excludeLinks = "" }) => {
+interface ArticlesListProps {
+  posts: BlogApiRelatedPosts[];
+  excludeLinks?: string[];
+}
+
+export const ArticlesList = ({
+  posts,
+  excludeLinks = [],
+}: ArticlesListProps) => {
   if (posts.length < 1) {
     return null;
   }

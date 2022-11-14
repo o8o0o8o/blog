@@ -1,8 +1,9 @@
 import React from "react";
 import Author from "../Author";
 import styles from "./styles.module.css";
+import { BlogApiAuthor } from "@site/src/types";
 
-const getAuthors = (allAuthors, authorIds) => {
+const getAuthors = (allAuthors: BlogApiAuthor[], authorIds: string[]) => {
   const selected = authorIds
     .map((authorId) =>
       allAuthors.find((author) => author.authorId === authorId)
@@ -11,7 +12,12 @@ const getAuthors = (allAuthors, authorIds) => {
   return selected;
 };
 
-const Socials = ({ authorIds, authorsMap }) => {
+type SocialsProps = {
+  authorIds: [];
+  authorsMap: [];
+};
+
+const Socials = ({ authorIds, authorsMap }: SocialsProps) => {
   const postAuthors = getAuthors(authorsMap, authorIds);
 
   return (
@@ -31,11 +37,6 @@ const Socials = ({ authorIds, authorsMap }) => {
       </div>
     </div>
   );
-};
-
-Socials.defaultProps = {
-  authorIds: [],
-  authorsMap: [],
 };
 
 export default Socials;

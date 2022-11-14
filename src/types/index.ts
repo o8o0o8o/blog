@@ -1,4 +1,4 @@
-export interface Author {
+export interface BlogApiAuthor {
   name: string;
   authorId: string;
   photo: string;
@@ -6,12 +6,27 @@ export interface Author {
   url: string;
 }
 
-export interface RelatedPosts {
+export interface BlogApiTag {
+  label: string;
+  permalink: string;
+}
+
+export interface BlogApiRelatedPost {
   title: string;
   permalink: string;
   formattedDate: string;
-  authors: string;
+  authors: string[];
   readingTime: string;
   date: string;
-  tags: string[];
+  tags: BlogApiTag[];
+}
+
+export interface BlogApiPost {
+  title: string;
+  permalink: string;
+  formattedDate: string;
+  authors: string[];
+  readingTime: string;
+  date: string;
+  tags: BlogApiTag[];
 }

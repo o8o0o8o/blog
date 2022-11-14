@@ -42,4 +42,4 @@ If you are using GitHub pages for hosting, this command is a convenient way to b
 
 We can customize components by [swizzling](https://docusaurus.io/docs/swizzling) and styles by [styling](https://docusaurus.io/docs/swizzling)
 
-Custom plugin `plugins/blog-plugin.ts` works just like default one `plugin-content-blog` but extended to add relatedPosts, to metadata.
+Custom plugin `plugins/blog-plugin.js` works just like default one `plugin-content-blog` but extended to add relatedPosts, to metadata.

@@ -20,9 +20,7 @@ function paginateBlogPosts({
 }) {
   const totalCount = blogPosts.length;
   const postsPerPage = totalCount;
-
   const numberOfPages = Math.ceil(totalCount / postsPerPage);
-
   const pages = [];
 
   function permalink(page) {
@@ -114,7 +112,7 @@ async function blogPluginExtended(...pluginArgs) {
 
   try {
     const file = await fs.promises.readFile("blog/developers.yaml", "utf8");
-    const documents = await parseAllDocuments(file);
+    const documents = parseAllDocuments(file);
 
     documents.forEach((dev) => {
       const obj = {};
@@ -186,9 +184,7 @@ async function blogPluginExtended(...pluginArgs) {
       await Promise.all(
         allBlogPosts.map(async (blogPost) => {
           const { id, metadata } = blogPost;
-
           const relatedPosts = getReletadPosts(allBlogPosts, metadata);
-
           const authorPosts = getAuthorPosts(allBlogPosts, metadata);
 
           await createData(
@@ -268,6 +264,7 @@ async function blogPluginExtended(...pluginArgs) {
       const authorsArray = allBlogPosts
         .map((post) => post.metadata.frontMatter.authorIds[0])
         .filter((authorName) => authorName !== undefined);
+
       const uniqueAuthors = [...new Set(authorsArray)];
 
       uniqueAuthors.map(async (author) => {
@@ -307,12 +304,14 @@ async function blogPluginExtended(...pluginArgs) {
         await Promise.all(
           tag.pages.map(async (blogPaginated) => {
             const { metadata, items } = blogPaginated;
+
             const tagProp = {
               label: tag.label,
               permalink: tag.permalink,
               allTagsPath: blogTagsListPath,
               count: tag.items.length,
             };
+
             const tagPropPath = await createData(
               `${utils.docuHash(metadata.permalink)}.json`,
               JSON.stringify(tagProp, null, 2)

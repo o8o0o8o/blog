@@ -1,6 +1,5 @@
 import React from "react";
 import BlogLayout from "@theme/BlogLayout";
-
 import { ArticlesList } from "../ArticlesList";
 
 const AuthorPage = (props) => {
