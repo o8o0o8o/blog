@@ -244,15 +244,18 @@ As a result, our component will look like this.
 _Script 10. Component patching the document_
 
 ```js
+// highlight-next-line
 import PatchEvent, { set } from ‘@Qsanity/form-builder/PatchEvent' ;
-
+// highlight-next-line
 const User = ({ value, type, onChange }) = {
 const { profileImage, name, email } = value;
 const { title } = type;
 
 const handleClick = async () => {
+  // highlight-start
 const user = await client.request({ uri: ‘'users/me' });
 onChange(PatchEvent.from(set(user)));
+// highlight-end
 };
 
 return (
