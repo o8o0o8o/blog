@@ -14,14 +14,14 @@ import Signatures from "../../components/Signatures";
 import { ArticlesList } from "../../components/ArticlesList";
 import styles from "./styles.module.css";
 import { TagsRow } from "../../components/TagsRow";
-import type { Author, RelatedPosts } from "@site/src/types";
+import type { BlogApiAuthor, BlogApiRelatedPost } from "@site/src/types";
 
 function BlogPostPageContent({ children }) {
   const { metadata } = useBlogPost();
 
   type ExtendedMetadata = typeof metadata & {
-    relatedPosts: RelatedPosts;
-    authorsMap: Author[];
+    relatedPosts: BlogApiRelatedPost;
+    authorsMap: BlogApiAuthor[];
   };
 
   const {
@@ -34,7 +34,7 @@ function BlogPostPageContent({ children }) {
     authorsMap,
   } = metadata as unknown as ExtendedMetadata;
   const heroImage = (frontMatter.image || frontMatter.heroImage) as string;
-  const authorIds = frontMatter.authorIds;
+  const authorIds = frontMatter.authorIds || [];
 
   return (
     <BlogLayout>

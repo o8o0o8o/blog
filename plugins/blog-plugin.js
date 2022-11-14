@@ -51,12 +51,6 @@ function paginateBlogPosts({
   return pages;
 }
 
-function getMultipleRandomElement(arr, num) {
-  const shuffled = [...arr].sort(() => 0.5 - Math.random());
-
-  return shuffled.slice(0, num);
-}
-
 function getReletadPosts(allBlogPosts, metadata) {
   const relatedPosts = allBlogPosts.filter(
     (post) =>
@@ -74,29 +68,6 @@ function getReletadPosts(allBlogPosts, metadata) {
       readingTime: post.metadata.readingTime,
       date: post.metadata.date,
       tags: post.metadata.tags,
-    };
-  });
-
-  return filteredPostInfos;
-}
-
-function getAuthorPosts(allBlogPosts, metadata) {
-  const authorPosts = allBlogPosts.filter(
-    (post) =>
-      post.metadata.frontMatter.authors === metadata.frontMatter.authors &&
-      post.metadata.title !== metadata.title
-  );
-
-  const randomThreeAuthorPosts = getMultipleRandomElement(authorPosts, 3);
-
-  const filteredPostInfos = randomThreeAuthorPosts.map((post) => {
-    return {
-      title: post.metadata.title,
-      permalink: post.metadata.permalink,
-      formattedDate: post.metadata.formattedDate,
-      authors: post.metadata.authors,
-      readingTime: post.metadata.readingTime,
-      date: post.metadata.date,
     };
   });
 
@@ -185,17 +156,12 @@ async function blogPluginExtended(...pluginArgs) {
         allBlogPosts.map(async (blogPost) => {
           const { id, metadata } = blogPost;
           const relatedPosts = getReletadPosts(allBlogPosts, metadata);
-          const authorPosts = getAuthorPosts(allBlogPosts, metadata);
 
           await createData(
             // Note that this created data path must be in sync with
             // metadataPath provided to mdx-loader.
             `${utils.docuHash(metadata.source)}.json`,
-            JSON.stringify(
-              { ...metadata, relatedPosts, authorPosts, authorsMap },
-              null,
-              2
-            )
+            JSON.stringify({ ...metadata, relatedPosts, authorsMap }, null, 2)
           );
 
           addRoute({
@@ -262,15 +228,21 @@ async function blogPluginExtended(...pluginArgs) {
       );
 
       const authorsArray = allBlogPosts
-        .map((post) => post.metadata.frontMatter.authorIds[0])
+        .flatMap((post) => {
+          const authorIds = post?.metadata?.frontMatter?.authorIds ?? [];
+
+          return authorIds[0] || [];
+        })
         .filter((authorName) => authorName !== undefined);
 
       const uniqueAuthors = [...new Set(authorsArray)];
 
       uniqueAuthors.map(async (author) => {
-        const authorPosts = allBlogPosts.filter(
-          (post) => post.metadata.frontMatter.authorIds[0] === author
-        );
+        const authorPosts = allBlogPosts.filter((post) => {
+          const authorIds = post?.metadata?.frontMatter?.authorIds ?? [];
+
+          return authorIds[0] === author;
+        });
 
         const authorListPaginated = paginateBlogPosts({
           blogPosts: authorPosts,
