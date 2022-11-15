@@ -6,7 +6,7 @@ export default function BlogLayout(props) {
 
   return (
     <Layout {...layoutProps}>
-      <main itemScope itemType="http://schema.org/Blog" className="main">
+      <main itemScope itemType="http://schema.org/Blog">
         {children}
       </main>
     </Layout>
