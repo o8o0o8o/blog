@@ -87,8 +87,9 @@ async function blogPluginExtended(...pluginArgs) {
 
     documents.forEach((dev) => {
       const obj = {};
+      const items = dev?.contents?.items ?? [];
 
-      dev.contents.items.forEach((item) => {
+      items.forEach((item) => {
         if (item.key.value === "links") {
           obj.url = item.value.items[0].items[0].value.value; // get first link
         } else {

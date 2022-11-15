@@ -26,13 +26,18 @@
 }
 
 .articles-list__title {
-  font-size: 34px;
+  font-family: Helvetica Bold, Arial, sans-serif;
+  font-size: 68px;
+  font-weight: 700;
+  line-height: 1.02;
+  text-transform: uppercase;
 }
 
 .articles-list__link {
-  padding: 34px 0 23px;
   display: block;
-  color: black;
+  padding: 70px 0 52px;
+  color: #222;
+  text-decoration: none;
 }
 
 .articles-list__item:hover a,
@@ -42,4 +47,27 @@
 
 .articles-list__item:hover {
   background-color: var(--ifm-color-primary);
+}
+
+.articles-list__container {
+  max-width: 1600px;
+  padding: 0 50px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.articles-list__desc {
+  font-size: 14px;
+  line-height: 1.72;
+  max-width: 460px;
+  margin: 15px auto 28px;
+  text-transform: none;
+}
+
+.short .articles-list__title {
+  font-size: 36px;
+}
+
+.short .articles-list__link {
+  padding: 34px 0 23px;
 }

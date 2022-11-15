@@ -195,27 +195,15 @@ const config = {
             className: "header-navbar-link",
           },
           {
+            type: "custom-ContactUsButton",
             position: "right",
-            "aria-label": "facebook",
-            className: "header-facebook-link",
-            href: "https://www.facebook.com/focusreactive/",
-          },
-          {
-            position: "right",
-            "aria-label": "twitter",
-            className: "header-twitter-link",
-            href: "https://twitter.com/FocusReactive",
-          },
-          {
             to: "/mail-us",
             label: "Contact Us",
-            position: "right",
-            className: "header-navbar-link",
           },
         ],
       },
       footer: {
-        copyright: `${mockResponse.footer.copyInfo} ${mockResponse.footer.contactInfo}`,
+        copyright: mockResponse.footer.copyInfo,
         links: mockResponse.footer.navigation.map((group) => ({
           title: group.title,
           items: group.links.map((link) => ({
@@ -228,11 +216,11 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-      // tableOfContents: {
-      //   minHeadingLevel: 2,
-      //   maxHeadingLevel: 5,
-      // },
     }),
+  customFields: {
+    /** Footer Fields */
+    contactInfo: mockResponse.footer.contactInfo,
+  },
 };
 
 module.exports = config;

@@ -1,0 +1,23 @@
+.menu__item-button {
+  background: #13cf2e;
+  color: #181818;
+  display: flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 20px;
+  text-decoration: none;
+  position: relative;
+  -webkit-transition: color 0.35s ease;
+  transition: color 0.35s ease;
+  white-space: nowrap;
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: Helvetica Bold, Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: -0.04em;
+}
+
+.menu__item-button:hover {
+  color: white;
+}

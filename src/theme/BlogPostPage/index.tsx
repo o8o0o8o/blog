@@ -63,7 +63,7 @@ function BlogPostPageContent({ children }) {
       </Article>
 
       <Signatures authorsMap={authorsMap} authorIds={authorIds} />
-      <ArticlesList posts={relatedPosts} excludeLinks={permalink} />
+      <ArticlesList posts={relatedPosts} excludeLinks={permalink} short />
     </BlogLayout>
   );
 }
