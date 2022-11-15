@@ -59,3 +59,12 @@
   outline: none;
   cursor: pointer;
 }
+
+.mail-form__input-textarea {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  min-height: 120px;
+  min-width: 100%;
+  max-width: 100%;
+}

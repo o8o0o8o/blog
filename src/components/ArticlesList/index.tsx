@@ -26,7 +26,7 @@ const ArticleItem = ({
           {description && (
             <p className={styles["articles-list__desc"]}>{description}</p>
           )}
-          <div className="articles-list__tags">
+          <div>
             <TagsRow tags={tags} noLinks />
           </div>
         </div>

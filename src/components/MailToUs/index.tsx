@@ -10,10 +10,7 @@ const MailToUs = ({}: MailToUsProps) => {
   const { customFields } = siteConfig;
   const { mailToUsTitle } = customFields;
   return (
-    <section
-      className={clsx("mail-us container", styles["mail-us"])}
-      id="mail-us"
-    >
+    <section className={clsx("container", styles["mail-us"])} id="mail-us">
       <div className="container">
         <h3 className={styles["mail-us__title"]}>{mailToUsTitle as string}</h3>
 
@@ -45,9 +42,8 @@ const MailToUs = ({}: MailToUsProps) => {
             <textarea
               className={clsx(
                 styles["mail-form__input"],
-                "mail-form__input-textarea"
+                styles["mail-form__input-textarea"]
               )}
-              type="text"
               placeholder="Message"
               data-key="visitor-message"
             ></textarea>
@@ -56,7 +52,7 @@ const MailToUs = ({}: MailToUsProps) => {
           <button
             className={styles["mail-form__submit"]}
             type="submit"
-            disabled="true"
+            disabled
           >
             Send
           </button>
