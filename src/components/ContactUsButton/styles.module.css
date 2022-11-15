@@ -21,3 +21,7 @@
 .menu__item-button:hover {
   color: white;
 }
+
+.menu__item-button_margin-left {
+  margin-left: 25px;
+}

@@ -1,4 +1,5 @@
 import Link from "@docusaurus/Link";
+import clsx from "clsx";
 import React from "react";
 import styles from "./styles.module.css";
 
@@ -9,7 +10,13 @@ type ContactUsButtonProps = {
 
 const ContactUsButton = ({ label, to }: ContactUsButtonProps) => {
   return (
-    <Link to={to} className={styles["menu__item-button"]}>
+    <Link
+      to={to}
+      className={clsx(
+        styles["menu__item-button"],
+        styles["menu__item-button_margin-left"]
+      )}
+    >
       {label}
     </Link>
   );

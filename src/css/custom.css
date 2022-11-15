@@ -60,9 +60,33 @@
 }
 
 .header-navbar-link {
-  font-weight: bold;
   text-transform: uppercase;
+  font-family: Helvetica Bold, Arial, sans-serif;
   font-size: 12px;
+  letter-spacing: -0.04em;
+  margin-left: 10px;
+}
+
+.header-navbar-link:first-child {
+  margin-right: 82px;
+}
+
+.header-navbar-link::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  bottom: 5px;
+  height: 2px;
+  background-color: var(--ifm-color-primary);
+  transition: width 0.2s ease-in-out;
+}
+
+.header-navbar-link:hover::before {
+  width: calc(100% - 20px);
+}
+
+.navbar__item {
+  position: relative;
 }
 
 .footer {
