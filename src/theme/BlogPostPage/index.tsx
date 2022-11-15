@@ -15,6 +15,7 @@ import { ArticlesList } from "../../components/ArticlesList";
 import styles from "./styles.module.css";
 import { TagsRow } from "../../components/TagsRow";
 import type { BlogApiAuthor, BlogApiRelatedPost } from "@site/src/types";
+import clsx from "clsx";
 
 function BlogPostPageContent({ children }) {
   const { metadata } = useBlogPost();
@@ -54,14 +55,20 @@ function BlogPostPageContent({ children }) {
           {heroImage ? (
             <img className="hero-image" src={heroImage} alt={title} />
           ) : null}
-          <BlogPostItem>{children}</BlogPostItem>
+          <BlogPostItem
+            showTitle={
+              heroImage ? (
+                <img className="hero-image" src={heroImage} alt={title} />
+              ) : null
+            }
+          >
+            {children}
+          </BlogPostItem>
         </MarkdownBlock>
-
-        <div className={styles.article__tags}>
+        <div className={clsx(styles.article__tags, "container")}>
           <TagsRow tags={tags} noLinks={false} />
         </div>
       </Article>
-
       <Signatures authorsMap={authorsMap} authorIds={authorIds} />
       <ArticlesList posts={relatedPosts} excludeLinks={permalink} short />
     </BlogLayout>

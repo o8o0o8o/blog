@@ -1,5 +1,4 @@
 import React from "react";
-
 import Layout from "@theme/Layout";
 
 export default function BlogLayout(props) {
@@ -7,7 +6,7 @@ export default function BlogLayout(props) {
 
   return (
     <Layout {...layoutProps}>
-      <main itemScope itemType="http://schema.org/Blog">
+      <main itemScope itemType="http://schema.org/Blog" className="main">
         {children}
       </main>
     </Layout>

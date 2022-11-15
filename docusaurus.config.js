@@ -197,7 +197,7 @@ const config = {
           {
             type: "custom-ContactUsButton",
             position: "right",
-            to: "/mail-us",
+            to: "/#mail-us",
             label: "Contact Us",
           },
         ],
@@ -220,6 +220,11 @@ const config = {
   customFields: {
     /** Footer Fields */
     contactInfo: mockResponse.footer.contactInfo,
+
+    // mail-to-us
+    mailToUsTitle: `WHETHER YOU ARE STARTING A NEW PROJECT
+    OR FEELING STUCK ON A CURRENT ONE,
+    CONTACT US TODAY`,
   },
 };
 

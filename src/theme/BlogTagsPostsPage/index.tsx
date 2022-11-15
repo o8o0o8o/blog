@@ -11,6 +11,7 @@ import Link from "@docusaurus/Link";
 import BlogLayout from "@theme/BlogLayout";
 import SearchMetadata from "@theme/SearchMetadata";
 import { ArticlesList } from "../../components/ArticlesList";
+import styles from "./styles.module.css";
 
 // Very simple pluralization: probably good enough for now
 function useBlogPostsPlural() {
@@ -59,7 +60,7 @@ function BlogTagsPostsPageContent({ tag, items }) {
   }));
   return (
     <BlogLayout>
-      <div className="container">
+      <div className={clsx("container", styles["tags-post-page"])}>
         <header className="margin-bottom--xl">
           <h1>{title}</h1>
 

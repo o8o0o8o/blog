@@ -20,6 +20,10 @@ const Container = styled.div`
     color: rgba(0, 0, 0, 0.54);
     font-weight: 300;
   }
+  @media only screen and (max-width: 670px) {
+    padding: 9px 50px 0;
+    max-width: 100%;
+  }
 `;
 
 const AuthorBlock = styled.div`

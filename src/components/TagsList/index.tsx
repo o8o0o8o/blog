@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { TagsRow } from "../TagsRow";
 import { BlogApiTag } from "@site/src/types";
+import styles from "./styles.module.css";
 
 const TagsHolder = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ type TagsListProps = {
 const TagsList = ({ tags }: TagsListProps) => {
   return (
     <section
-      className="tag-section h-margin is-light js-scroll-header"
+      className={styles["tag-section"]}
       id="tag-section"
       data-section="tag-section"
     >

@@ -71,3 +71,9 @@
 .short .articles-list__link {
   padding: 34px 0 23px;
 }
+
+@media only screen and (max-width: 599px) {
+  .articles-list__title {
+    font-size: 6vw;
+  }
+}
