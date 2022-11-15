@@ -65,7 +65,7 @@ function BlogPostPageContent({ children }) {
             {children}
           </BlogPostItem>
         </MarkdownBlock>
-        <div className={clsx(styles.article__tags, "container")}>
+        <div className={styles.article__tags}>
           <TagsRow tags={tags} noLinks={false} />
         </div>
       </Article>
