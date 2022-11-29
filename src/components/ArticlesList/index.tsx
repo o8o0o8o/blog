@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 import { TagsRow } from "../TagsRow";
 import type { BlogApiRelatedPost, BlogApiTag } from "@site/src/types";
 import clsx from "clsx";
+import { usePluginData } from "@docusaurus/useGlobalData";
 
 interface ArticleItemProps {
   tags: BlogApiTag[];
@@ -21,7 +22,7 @@ const ArticleItem = ({
   return (
     <li className={styles["articles-list__item"]}>
       <Link className={styles["articles-list__link"]} to={permalink}>
-        <div className={styles["articles-list__container"]}>
+        <div className="block__container">
           <h3 className={styles["articles-list__title"]}>{title}</h3>
           {description && (
             <p className={styles["articles-list__desc"]}>{description}</p>

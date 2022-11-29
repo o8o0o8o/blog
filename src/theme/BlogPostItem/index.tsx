@@ -3,7 +3,6 @@ import clsx from "clsx";
 // @ts-ignore
 import { useBlogPost } from "@docusaurus/theme-common/internal";
 import BlogPostItemContainer from "@theme/BlogPostItem/Container";
-import BlogPostItemHeader from "@theme/BlogPostItem/Header";
 import BlogPostItemContent from "@theme/BlogPostItem/Content";
 import BlogPostItemFooter from "@theme/BlogPostItem/Footer";
 // apply a bottom margin in list view
@@ -25,7 +24,6 @@ export default function BlogPostItem({
   const containerClassName = useContainerClassName();
   return (
     <BlogPostItemContainer className={clsx(containerClassName, className)}>
-      {showTitle ? <BlogPostItemHeader /> : null}
       <BlogPostItemContent>{children}</BlogPostItemContent>
       <BlogPostItemFooter />
     </BlogPostItemContainer>

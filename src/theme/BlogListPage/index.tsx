@@ -30,17 +30,15 @@ function BlogListPageContent(props) {
   const { items, tags } = props;
 
   const posts = items.map((item) => ({
-    permalink: item.content.metadata.permalink,
-    description: item.content.metadata.description,
-    title: item.content.metadata.title,
-    tags: item.content.metadata.tags,
+    permalink: item.content.frontMatter.slug,
+    description: item.content.frontMatter.description,
+    title: item.content.frontMatter.title,
+    tags: item.content.frontMatter.tags,
   }));
 
   return (
     <BlogLayout>
-      <div className="container">
-        <TagsList tags={tags} />
-      </div>
+      <TagsList tags={tags} />
       <ArticlesList posts={posts} />
     </BlogLayout>
   );

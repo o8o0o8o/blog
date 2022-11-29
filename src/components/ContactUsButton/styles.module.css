@@ -19,9 +19,19 @@
 }
 
 .menu__item-button:hover {
-  color: white;
+  color: black;
 }
 
 .menu__item-button_margin-left {
   margin-left: 25px;
+}
+
+@media only screen and (max-width: 996px) {
+  .menu__item-button_margin-left {
+    margin-left: 0;
+  }
+
+  .menu__item-button {
+    padding: 0 10px;
+  }
 }

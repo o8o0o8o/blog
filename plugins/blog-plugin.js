@@ -1,9 +1,22 @@
 const blogPluginExports = require("@docusaurus/plugin-content-blog");
+const {
+  getBlogTags,
+} = require("@docusaurus/plugin-content-blog/lib/blogUtils");
 const utils = require("@docusaurus/utils");
 const path = require("path");
-const { parseAllDocuments, stringify } = require("yaml");
-const fs = require("fs");
+const { stringify } = require("yaml");
+const os = require("os");
 const defaultBlogPlugin = blogPluginExports.default;
+const normalizeFrontMatterTag = require("../utils/normalizeFrontMatterTag.ts");
+const sanityClient = require("@sanity/client");
+
+const client = sanityClient({
+  projectId: "ahan5lt9",
+  dataset: "production",
+  apiVersion: "2022-11-21", // use current UTC date - see "specifying API version"!
+  token: "", // or leave blank for unauthenticated usage
+  useCdn: false, // `false` if you want to ensure fresh data
+});
 
 const pluginDataDirRoot = path.join(
   ".docusaurus",
@@ -11,6 +24,20 @@ const pluginDataDirRoot = path.join(
 );
 const aliasedSource = (source) =>
   `~blog/${utils.posixPath(path.relative(pluginDataDirRoot, source))}`;
+
+function formatBlogPostDate(locale, date, calendar) {
+  try {
+    return new Intl.DateTimeFormat(locale, {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      timeZone: "UTC",
+    }).format(date);
+  } catch (err) {
+    logger_1.default.error`Can't format blog post date "${String(date)}"`;
+    throw err;
+  }
+}
 
 function paginateBlogPosts({
   blogPosts,
@@ -51,74 +78,143 @@ function paginateBlogPosts({
   return pages;
 }
 
-function getReletadPosts(allBlogPosts, metadata) {
+function getRelatedPosts(allBlogPosts, currentPost) {
   const relatedPosts = allBlogPosts.filter(
     (post) =>
-      post.metadata.frontMatter.tags?.some((tag) =>
-        metadata.frontMatter.tags?.includes(tag)
-      ) && post.metadata.title !== metadata.title
+      post.tags.some((postTag) =>
+        currentPost.tags.some(
+          (currentPostTag) => postTag.label === currentPostTag.label
+        )
+      ) && post.title !== currentPost.title
   );
 
-  const filteredPostInfos = relatedPosts.map((post) => {
-    return {
-      title: post.metadata.title,
-      permalink: post.metadata.permalink,
-      formattedDate: post.metadata.formattedDate,
-      authors: post.metadata.authors,
-      readingTime: post.metadata.readingTime,
-      date: post.metadata.date,
-      tags: post.metadata.tags,
-    };
-  });
-
-  return filteredPostInfos;
+  return relatedPosts.map((post) => ({
+    title: post.title,
+    permalink: "/" + post.slug,
+    authors: post.authors,
+    tags: post.tags,
+  }));
 }
 
 async function blogPluginExtended(...pluginArgs) {
   pluginArgs[1].routeBasePath = "/"; // Serve the blogPosts at the site's root
 
+  const postsPerPageOption = "ALL";
+  const blogTagsListPath = "/tags";
   const blogPluginInstance = await defaultBlogPlugin(...pluginArgs);
-  const { blogTitle, blogDescription, postsPerPage } = pluginArgs[1];
-  let authorsMap = [];
-
-  try {
-    const file = await fs.promises.readFile("blog/developers.yaml", "utf8");
-    const documents = parseAllDocuments(file);
-
-    documents.forEach((dev) => {
-      const obj = {};
-      const items = dev?.contents?.items ?? [];
-
-      items.forEach((item) => {
-        if (item.key.value === "links") {
-          obj.url = item.value.items[0].items[0].value.value; // get first link
-        } else {
-          obj[item.key.value] = item.value.value;
-        }
-      });
-
-      authorsMap.push(obj);
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  const { blogTitle, blogDescription } = pluginArgs[1];
+  const authorsMap = [];
 
   return {
+    name: "docusaurus-plugin-content-blog",
     // Add all properties of the default blog plugin so existing functionality is preserved
     ...blogPluginInstance,
     /**
      * Override the default `contentLoaded` hook to access blog posts data
      */
+
+    loadContent: async function () {
+      const blogPosts = [];
+
+      try {
+        const postFields = `
+      title,
+      date,
+      description,
+      "heroImage": heroImage.asset->url,
+      "slug": slug.current,
+      "authors": authors[]->id,
+      content,
+      "tags": tags[]->label,
+      `;
+
+        const authorFields = `
+      id,
+      name,
+      about,
+      "picture": picture.asset->url,
+      `;
+
+        const indexQuery = `{
+        "posts": *[_type == "post"] | order(date desc, _updatedAt desc) {${postFields}},
+        "authors": *[_type == "author"] {${authorFields}},       
+      }`;
+
+        const res = await client.fetch(indexQuery, {});
+
+        res.authors.forEach((author) =>
+          authorsMap.push({
+            id: author.id,
+            name: author.name,
+            about: author.about,
+            picture: author.picture,
+          })
+        );
+
+        for (const post of res.posts) {
+          post.tags = post.tags.map(
+            (tag) => normalizeFrontMatterTag(blogTagsListPath, tag) // TODO implement on sanity side?
+          );
+        }
+
+        for (const post of res.posts) {
+          const slug = "/" + post.slug; //TODO
+          const relatedPosts = getRelatedPosts(res.posts, post);
+
+          blogPosts.push({
+            id: slug,
+            metadata: {
+              permalink: slug,
+              source: "temp",
+              title: post.title,
+              description: post.description,
+              tags: post.tags,
+              authors: post.authors,
+              frontMatter: {},
+            },
+            content: post.content[0],
+            ...post,
+            slug,
+            mdx:
+              "---" +
+              os.EOL +
+              stringify({
+                ...post,
+                content: undefined,
+                formattedDate: formatBlogPostDate("en-US", post.data),
+                heroImage: post.heroImage,
+                authors: post.authors,
+                slug,
+                relatedPosts,
+                authorsMap,
+                tags: post.tags,
+              }) +
+              "---" +
+              os.EOL +
+              post.content[0],
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      return {
+        blogPosts,
+        blogSidebarTitle: "none",
+        blogListPaginated: [],
+        blogTags: getBlogTags({ blogPosts, postsPerPageOption }),
+        blogTagsListPath,
+      };
+    },
+
     contentLoaded: async function (data) {
       const { content: blogContents, actions } = data;
       const { addRoute, createData } = actions;
+      const blogItemsToMetadata = {};
       const {
         blogPosts: allBlogPosts,
         blogTags,
         blogTagsListPath,
       } = blogContents;
-
-      const blogItemsToMetadata = {};
 
       function blogPostItemsModule(items) {
         return items.map((postId) => {
@@ -136,10 +232,6 @@ async function blogPluginExtended(...pluginArgs) {
         });
       }
 
-      const featuredBlogPosts = allBlogPosts.filter(
-        (post) => post.metadata.frontMatter.is_featured === true
-      );
-
       const blogPosts = allBlogPosts.filter(
         (post) => post.metadata.frontMatter.is_featured !== true
       );
@@ -149,28 +241,27 @@ async function blogPluginExtended(...pluginArgs) {
         basePageUrl: "/blog",
         blogTitle,
         blogDescription,
-        postsPerPageOption: postsPerPage,
+        postsPerPageOption,
       });
 
       // Create routes for blog entries.
       await Promise.all(
         allBlogPosts.map(async (blogPost) => {
           const { id, metadata } = blogPost;
-          const relatedPosts = getReletadPosts(allBlogPosts, metadata);
 
-          await createData(
-            // Note that this created data path must be in sync with
-            // metadataPath provided to mdx-loader.
-            `${utils.docuHash(metadata.source)}.json`,
-            JSON.stringify({ ...metadata, relatedPosts, authorsMap }, null, 2)
+          const contentPath = await createData(
+            `${utils.docuHash(id)}.mdx`,
+            blogPost.mdx
           );
+
+          metadata.source = contentPath;
 
           addRoute({
             path: metadata.permalink,
             component: "@theme/BlogPostPage",
             exact: true,
             modules: {
-              content: metadata.source,
+              content: contentPath,
             },
           });
 
@@ -216,11 +307,7 @@ async function blogPluginExtended(...pluginArgs) {
             component: "@theme/BlogListPage",
             exact: true,
             modules: {
-              items: blogPostItemsModule(
-                permalink === "/blog"
-                  ? [...items, ...featuredBlogPosts.map((post) => post.id)]
-                  : items
-              ),
+              items: blogPostItemsModule(items),
               metadata: aliasedSource(pageMetadataPath),
               tags: tagsPropPath,
             },
@@ -228,29 +315,20 @@ async function blogPluginExtended(...pluginArgs) {
         })
       );
 
-      const authorsArray = allBlogPosts
-        .flatMap((post) => {
-          const authorIds = post?.metadata?.frontMatter?.authorIds ?? [];
-
-          return authorIds[0] || [];
-        })
-        .filter((authorName) => authorName !== undefined);
-
-      const uniqueAuthors = [...new Set(authorsArray)];
-
-      uniqueAuthors.map(async (author) => {
+      authorsMap.map(async (author) => {
+        const authorId = author.id;
         const authorPosts = allBlogPosts.filter((post) => {
-          const authorIds = post?.metadata?.frontMatter?.authorIds ?? [];
+          const authorIds = post.metadata.authors;
 
-          return authorIds[0] === author;
+          return authorIds[0] === authorId;
         });
 
         const authorListPaginated = paginateBlogPosts({
           blogPosts: authorPosts,
-          basePageUrl: "/blog/author/" + author,
+          basePageUrl: "/blog/author/" + authorId,
           blogTitle,
           blogDescription,
-          postsPerPageOption: "ALL",
+          postsPerPageOption,
         });
 
         authorListPaginated.map((authorListPage) => {
@@ -312,6 +390,8 @@ async function blogPluginExtended(...pluginArgs) {
       await createTagsListPage();
       await Promise.all(Object.values(blogTags).map(createTagPostsListPage));
     },
+    postBuild: function () // Do we need this?
+    {},
   };
 }
 

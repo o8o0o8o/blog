@@ -7,6 +7,7 @@ import {
 } from "@docusaurus/theme-common/internal";
 import NavbarMobileSidebar from "@theme/Navbar/MobileSidebar";
 import styles from "./styles.module.css";
+
 function NavbarBackdrop(props) {
   return (
     <div
@@ -26,8 +27,7 @@ export default function NavbarLayout({ children }) {
     <nav
       ref={navbarRef}
       className={clsx(
-        "navbar",
-        "navbar--fixed-top",
+        styles.navbar,
         hideOnScroll && [
           styles.navbarHideable,
           !isNavbarVisible && styles.navbarHidden,
@@ -36,13 +36,14 @@ export default function NavbarLayout({ children }) {
           "navbar--dark": style === "dark",
           "navbar--primary": style === "primary",
           "navbar-sidebar--show": mobileSidebar.shown,
-        },
-        "container"
+        }
       )}
     >
-      {children}
-      <NavbarBackdrop onClick={mobileSidebar.toggle} />
-      <NavbarMobileSidebar />
+      <div className="block__container">
+        {children}
+        <NavbarBackdrop onClick={mobileSidebar.toggle} />
+        <NavbarMobileSidebar />
+      </div>
     </nav>
   );
 }

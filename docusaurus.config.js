@@ -150,14 +150,44 @@ const config = {
         items: [
           {
             position: "left",
-            to: "/",
+            to: "https://focusreactive.com/",
             className: "header-logo",
+            target: "_self",
           },
           {
-            to: "/home",
+            to: "https://focusreactive.com/",
             label: "Home",
             position: "right",
             className: "header-navbar-link",
+            target: "_self",
+          },
+          {
+            to: "https://focusreactive.com/#services",
+            label: "Services",
+            position: "right",
+            className: "header-navbar-link",
+            target: "_self",
+          },
+          {
+            to: "https://focusreactive.com/#techs",
+            label: "Technologies",
+            position: "right",
+            className: "header-navbar-link",
+            target: "_self",
+          },
+          {
+            to: "https://focusreactive.com/our-work/",
+            label: "Our work",
+            position: "right",
+            className: "header-navbar-link",
+            target: "_self",
+          },
+          {
+            to: "https://focusreactive.com/about/",
+            label: "About",
+            position: "right",
+            className: "header-navbar-link",
+            target: "_self",
           },
           {
             to: "/blog",
@@ -166,31 +196,7 @@ const config = {
             className: "header-navbar-link",
           },
           {
-            to: "/services",
-            label: "Services",
-            position: "right",
-            className: "header-navbar-link",
-          },
-          {
-            to: "/technologies",
-            label: "Technologies",
-            position: "right",
-            className: "header-navbar-link",
-          },
-          {
-            to: "/our-work",
-            label: "Our work",
-            position: "right",
-            className: "header-navbar-link",
-          },
-          {
-            to: "/about",
-            label: "About",
-            position: "right",
-            className: "header-navbar-link",
-          },
-          {
-            to: "/careers",
+            to: "https://careers.smartrecruiters.com/FocusReactive",
             label: "Careers",
             position: "right",
             className: "header-navbar-link",
@@ -198,7 +204,7 @@ const config = {
           {
             type: "custom-ContactUsButton",
             position: "right",
-            to: "/#mail-us",
+            to: "https://focusreactive.com/#mail-us",
             label: "Contact Us",
           },
         ],

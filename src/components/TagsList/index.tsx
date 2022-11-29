@@ -10,7 +10,7 @@ const TagsHolder = styled.div`
   flex-wrap: wrap;
   text-transform: uppercase;
   font-weight: bold;
-  padding: 32px 0;
+  padding: 32px 50px;
 `;
 
 type TagsListProps = {
@@ -24,7 +24,7 @@ const TagsList = ({ tags }: TagsListProps) => {
       id="tag-section"
       data-section="tag-section"
     >
-      <TagsHolder className="container">
+      <TagsHolder className="block__container">
         <TagsRow tags={tags} noLinks={false} />
       </TagsHolder>
     </section>

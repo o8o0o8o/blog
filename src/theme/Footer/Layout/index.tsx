@@ -10,7 +10,10 @@ export default function FooterLayout({ style, links, logo, copyright }) {
       })}
     >
       <div
-        className={clsx("container container-fluid", styles.footer__container)}
+        className={clsx(
+          "block__container container-fluid",
+          styles.footer__container
+        )}
       >
         {links}
       </div>

@@ -14,28 +14,23 @@ import Signatures from "../../components/Signatures";
 import { ArticlesList } from "../../components/ArticlesList";
 import styles from "./styles.module.css";
 import { TagsRow } from "../../components/TagsRow";
-import type { BlogApiAuthor, BlogApiRelatedPost } from "@site/src/types";
+import type { SanityApiAuthor, BlogApiRelatedPost } from "@site/src/types";
 import clsx from "clsx";
+import MDXContent from "../MDXContent";
 
 function BlogPostPageContent({ children }) {
-  const { metadata } = useBlogPost();
+  const { frontMatter } = useBlogPost();
 
-  type ExtendedMetadata = typeof metadata & {
+  type ExtendedMetadata = typeof frontMatter & {
     relatedPosts: BlogApiRelatedPost;
-    authorsMap: BlogApiAuthor[];
+    authorsMap: SanityApiAuthor[];
   };
 
-  const {
-    title,
-    description,
-    tags,
-    frontMatter,
-    relatedPosts,
-    permalink,
-    authorsMap,
-  } = metadata as unknown as ExtendedMetadata;
+  const { title, description, tags, relatedPosts, permalink, authorsMap } =
+    frontMatter as unknown as ExtendedMetadata;
+
   const heroImage = (frontMatter.image || frontMatter.heroImage) as string;
-  const authorIds = frontMatter.authorIds || [];
+  const authorIds = frontMatter.authors || [];
 
   return (
     <BlogLayout>
@@ -47,7 +42,7 @@ function BlogPostPageContent({ children }) {
           <h1 className={styles.article__title}>{title}</h1>
           <p className="article__short-desc">{description}</p>
         </MarkdownBlock>
-        <Socials authorIds={authorIds} authorsMap={authorsMap} />
+        <Socials authors={authorIds} authorsMap={authorsMap} />
         <MarkdownBlock
           className={styles.article__container}
           heroImage={heroImage}
@@ -55,15 +50,7 @@ function BlogPostPageContent({ children }) {
           {heroImage ? (
             <img className="hero-image" src={heroImage} alt={title} />
           ) : null}
-          <BlogPostItem
-            showTitle={
-              heroImage ? (
-                <img className="hero-image" src={heroImage} alt={title} />
-              ) : null
-            }
-          >
-            {children}
-          </BlogPostItem>
+          <MDXContent>{children}</MDXContent>
         </MarkdownBlock>
         <div className={styles.article__tags}>
           <TagsRow tags={tags} noLinks={false} />
@@ -76,6 +63,7 @@ function BlogPostPageContent({ children }) {
 }
 export default function BlogPostPage(props) {
   const BlogPostContent = props.content;
+
   return (
     <BlogPostProvider content={props.content} isBlogPostPage>
       <BlogPostPageContent>

@@ -53,14 +53,20 @@ function BlogTagsPostsPageMetadata({ tag }) {
 function BlogTagsPostsPageContent({ tag, items }) {
   const title = useBlogTagsPostsPageTitle(tag);
   const posts = items.map((item) => ({
-    tags: item.content.metadata.tags,
-    title: item.content.metadata.title,
-    permalink: item.content.metadata.permalink,
-    description: item.content.metadata.description,
+    tags: item.content.frontMatter.tags,
+    title: item.content.frontMatter.title,
+    permalink: item.content.frontMatter.slug,
+    description: item.content.frontMatter.description,
   }));
   return (
     <BlogLayout>
-      <div className={clsx("container", styles["tags-post-page"])}>
+      <div
+        className={clsx(
+          "block__container",
+          "block__container_centered",
+          "block__container_margin-top"
+        )}
+      >
         <header className="margin-bottom--xl">
           <h1>{title}</h1>
 

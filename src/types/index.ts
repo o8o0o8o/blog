@@ -1,15 +1,16 @@
-export interface BlogApiAuthor {
+export type SanityApiAuthor = {
   name: string;
-  authorId: string;
-  photo: string;
+  id: string;
+  picture: string;
   about: string;
   url: string;
-}
+};
 
-export interface BlogApiTag {
+export type BlogApiTag = {
   label: string;
+  /** Permalink to this tag's page, without the `/tags/` base path. */
   permalink: string;
-}
+};
 
 export interface BlogApiRelatedPost {
   title: string;

@@ -19,10 +19,13 @@ export default function BlogTagsListPage({ tags }) {
       )}
     >
       <PageMetadata title={title} />
+
       <SearchMetadata tag="blog_tags_list" />
       <BlogLayout>
-        <div className="container">
+        <div className="block__container block__container_centered block__container_margin-top">
           <h1>{title}</h1>
+        </div>
+        <div className="block__container block__container_centered">
           <TagsListByLetter tags={tags} />
         </div>
       </BlogLayout>

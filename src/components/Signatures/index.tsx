@@ -1,15 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Author from "../Author";
-
-const getAuthors = (allAuthors, authorIds) => {
-  const selected = authorIds
-    .map((authorId) =>
-      allAuthors.find((author) => author.authorId === authorId)
-    )
-    .filter(Boolean);
-  return selected;
-};
+import getAuthors from "@site/utils/getAuthors";
 
 const Container = styled.div`
   max-width: 620px;
@@ -40,7 +32,7 @@ const Signatures = ({ authorIds, authorsMap }) => {
     <Container>
       <h4>WRITTEN BY</h4>
       {postAuthors.map((author) => (
-        <AuthorBlock key={author.authorId}>
+        <AuthorBlock key={author.id}>
           <Author {...author} avatarSize="big" isItSignature />
         </AuthorBlock>
       ))}

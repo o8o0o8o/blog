@@ -9,10 +9,12 @@ type TagProp = {
 
 export const Tag = styled.span<TagProp>`
   margin-right: 9px;
-  text-decoration: none;
   color: #13cf2e;
   :last-of-type {
     margin-right: 0;
+  }
+  a {
+    text-decoration: none;
   }
   ${({ isLink }) =>
     isLink

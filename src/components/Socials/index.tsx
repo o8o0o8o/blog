@@ -1,38 +1,25 @@
 import React from "react";
 import Author from "../Author";
 import styles from "./styles.module.css";
-import { BlogApiAuthor } from "@site/src/types";
-
-const getAuthors = (allAuthors: BlogApiAuthor[], authorIds: string[]) => {
-  const selected = authorIds
-    .map((authorId) =>
-      allAuthors.find((author) => author.authorId === authorId)
-    )
-    .filter(Boolean);
-  return selected;
-};
+import BlogPostItemHeaderInfo from "@site/src/theme/BlogPostItem/Header/Info";
+import getAuthors from "@site/utils/getAuthors";
 
 type SocialsProps = {
-  authorIds: [];
+  authors: [];
   authorsMap: [];
 };
 
-const Socials = ({ authorIds, authorsMap }: SocialsProps) => {
-  const postAuthors = getAuthors(authorsMap, authorIds);
+const Socials = ({ authors, authorsMap }: SocialsProps) => {
+  const postAuthors = getAuthors(authorsMap, authors);
 
   return (
     <div className={styles["article-info"]}>
       <div className={styles["article-info__socials"]}>
-        <a href="https://twitter.com/FocusReactive">
-          <img src="/icons/twitter.svg" alt="Twitter" />
-        </a>
-        <a href="https://www.facebook.com/focusreactive/">
-          <img src="/icons/facebook.svg" alt="Facebook" />
-        </a>
+        <BlogPostItemHeaderInfo />
       </div>
       <div className={styles["article-info__authors"]}>
         {postAuthors.map((author) => (
-          <Author {...author} key={author.authorId} />
+          <Author {...author} key={author.id} />
         ))}
       </div>
     </div>

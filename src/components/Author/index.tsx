@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import styles from "./styles.module.css";
+import { SanityApiAuthor } from "@site/src/types";
 
 type AvatarProps = {
   avatarSize?: "small" | "big";
@@ -16,30 +17,25 @@ const Avatar = styled.img<AvatarProps>`
   border-radius: 50%;
 `;
 
-type AuthorProps = AvatarProps & {
-  name: string;
-  authorId: string;
-  photo: string;
-  isItSignature?: boolean;
-};
+type AuthorProps = AvatarProps &
+  SanityApiAuthor & {
+    isItSignature?: boolean;
+  };
 
 const Author = ({
   name,
-  authorId,
-  photo,
+  id,
+  picture,
   avatarSize,
   isItSignature,
+  about,
 }: AuthorProps) => (
   <div className={styles.author}>
     <div className={styles["author__img-wrap"]}>
-      <Avatar
-        src={`/images/team/${photo}`}
-        alt={name}
-        avatarSize={avatarSize}
-      />
+      <Avatar src={picture} alt={name} avatarSize={avatarSize} />
     </div>
     <div className={styles.author__desc}>
-      <Link to={`/blog/author/${authorId}`}>
+      <Link to={`/blog/author/${id}`}>
         <p
           className={
             isItSignature
@@ -56,7 +52,7 @@ const Author = ({
             ? clsx(styles.author__company, styles.author__company__signature)
             : styles.author__company
         }
-      >{`@${authorId}`}</p>
+      >{`@${about}`}</p>
     </div>
   </div>
 );

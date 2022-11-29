@@ -1,4 +1,4 @@
-# Website
+# FR Blog
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
@@ -42,4 +42,9 @@ If you are using GitHub pages for hosting, this command is a convenient way to b
 
 We can customize components by [swizzling](https://docusaurus.io/docs/swizzling) and styles by [styling](https://docusaurus.io/docs/swizzling)
 
-Custom plugin `plugins/blog-plugin.js` works just like default one `plugin-content-blog` but extended to add relatedPosts, to metadata.
+Custom plugin `plugins/blog-plugin.js` based on default one `plugin-content-blog` but extended to add relatedPosts to metadata.
+
+TODO:
+1 Trigger deployment when post is published in Sanity studio
+2 Use document action to create permalink field in a tag?
+3 Deploy fr sanity studio and import content

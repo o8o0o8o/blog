@@ -11,6 +11,7 @@ type ContactUsButtonProps = {
 const ContactUsButton = ({ label, to }: ContactUsButtonProps) => {
   return (
     <Link
+      target="_self"
       to={to}
       className={clsx(
         styles["menu__item-button"],

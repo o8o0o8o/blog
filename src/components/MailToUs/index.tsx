@@ -10,14 +10,17 @@ const MailToUs = ({}: MailToUsProps) => {
   const { customFields } = siteConfig;
   const { mailToUsTitle } = customFields;
   return (
-    <section className={clsx("container", styles["mail-us"])} id="mail-us">
-      <div className="container">
+    <section
+      className={clsx("block__container", styles["mail-us"])}
+      id="mail-us"
+    >
+      <div className="block__container">
         <h3 className={styles["mail-us__title"]}>{mailToUsTitle as string}</h3>
 
         <form id="mail-us-form" className={styles["mail-form"]}>
           <div>
             Reach us by email
-            <a href="mailto:hi@focusreactive.com">hi@focusreactive.com</a> or
+            <a href="mailto:hi@focusreactive.com"> hi@focusreactive.com</a> or
             fill the form below.
           </div>
           <div className={styles["mail-form__line"]}>

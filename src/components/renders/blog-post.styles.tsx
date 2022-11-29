@@ -50,7 +50,7 @@ export const MarkdownBlock = styled.div<ImageProps>`
     font-weight: 400;
   }
   hr {
-    margin: 24px auto 48px;
+    margin: 24px auto 24px;
     border: none;
     text-align: center;
     ::before {

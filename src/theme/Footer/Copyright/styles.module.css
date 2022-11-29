@@ -15,5 +15,6 @@
   .footer__bottom-container {
     flex-direction: column;
     text-align: center;
+    gap: 10px;
   }
 }
